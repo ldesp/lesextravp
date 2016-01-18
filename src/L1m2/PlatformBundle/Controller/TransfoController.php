@@ -26,7 +26,8 @@ class TransfoController extends Controller
         if ($form->handleRequest($request)->isValid())
         {
             if ($transfo->verifierMots($extrait->getExtraitFiltre()))
-            {        
+            {   
+                $em = $this->getDoctrine()->getManager();
                 $listTransfos = $em
                     ->getRepository('L1m2PlatformBundle:Transfo')
                     ->findByExtrait($id)
