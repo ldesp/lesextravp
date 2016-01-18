@@ -1,3 +1,7 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+l1m2_platform:
+    resource: "@L1m2PlatformBundle/Resources/config/routing.yml"
+    prefix:   /
+
+l1m2_core:
+    resource: "@L1m2CoreBundle/Resources/config/routing.yml"
+    prefix:   /

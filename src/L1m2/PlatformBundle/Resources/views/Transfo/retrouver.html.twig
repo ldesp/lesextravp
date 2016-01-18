@@ -1,0 +1,28 @@
+{# src/L1m2/PlatformBundle/Resources/views/Transfo/retrouver.html.twig #}
+
+{% extends "L1m2PlatformBundle::layout.html.twig" %}
+{% block title %}
+    Transformer - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {% block tetepage %}    
+        {{ parent() }}
+    {% endblock %}
+    {% block overlay %}
+        <div class="btn1"  id="message"></div>
+        <br/>
+        <input type="button" class="btn" value="ok" onclick="closePopUp()" />
+    {% endblock %}
+    {% block piedpage %} 
+         <input type="button" id="toggle" class="btn" value="extrait" onclick="changeGrids()" /> 
+         <p hidden="true" id ="entrees">{{ transfo.anagrammes }}_ID{{ transfo.id }}_{{ transfo.mots|replace({',' : ''}) }}_{{ transfo.extrait.reference }}<p> 
+    {% endblock %}
+    {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('bundles/l1m2core/js/common.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('bundles/l1m2core/js/script2.js') }}" ></script>
+        <script type="text/javascript"> window.onload = function() { initGrids();}; </script>
+    {% endblock %} 
+    
+{% endblock %}
+

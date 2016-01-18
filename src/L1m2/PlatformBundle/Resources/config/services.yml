@@ -1,0 +1,4 @@
+services:
+#    l1m2_platform.example:
+#        class: L1m2\PlatformBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

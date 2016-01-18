@@ -1,0 +1,25 @@
+{# On utilise ici le layout général, qui se situe dans ce même CoreBundle maintenant #}
+{% extends "L1m2CoreBundle::layout.html.twig" %}
+
+{% block title %}
+    Admin - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    {% block tetepage %} 
+         <li><a href="{{ path('l1m2_core_admin') }}" >admin</a></li>   
+        {{ parent() }}
+    {% endblock %}
+
+    {% block contenu %}  
+
+        <h3>Actions</h3>
+            <ul>                
+                <li>lister les <a href="{{ path('l1m2_platform_extraits') }}" >extraits</a></li>
+                <li>proposer un <a href="{{ path('l1m2_platform_propo') }}" >extrait</a></li>
+                <li>valider les <a href="{{ path('l1m2_platform_transfos') }}" >transfos</a></li>    
+            </ul> 
+    {% endblock %}
+
+{% endblock %}

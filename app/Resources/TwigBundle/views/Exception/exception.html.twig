@@ -1,0 +1,21 @@
+{% extends "L1m2PlatformBundle::layout.html.twig" %}
+{% block title %}
+    Erreur - {{ parent() }}
+{% endblock %}
+{% block body %}
+    {% block tetepage %}    
+        {{ parent() }}
+    {% endblock %}
+    {% block overlay %}
+    {% endblock %}
+    {% block contenu %}  
+        <h3>Il y a un problème</h3>
+        <div>Le serveur a indiqué: "{{ status_code }} {{ status_text }}"</div>
+        <div>Pourriez vous nous décrire ce que vous faisiez <br/> 
+             Nous traiterons le problème aussi vite que possible<br/>
+             Nous sommes désolés pour la gêne occasionnée
+        </div>
+    {% endblock %}
+    {% block javascripts %}
+    {% endblock %}     
+{% endblock %}

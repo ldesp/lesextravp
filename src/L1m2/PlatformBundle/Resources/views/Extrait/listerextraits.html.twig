@@ -1,0 +1,34 @@
+{# src/L1m2/PlatformBundle/Resources/views/Extrait/listerextraits.html.twig #}
+{% extends "L1m2PlatformBundle::layout.html.twig" %}
+{% block title %}
+    Lister - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {% block tetepage %} 
+        <li><a href="{{ path('l1m2_core_admin') }}" >admin</a></li>   
+        {{ parent() }}
+    {% endblock %}
+    {% block overlay %}
+    {% endblock %}
+    {% block contenu %}    
+        <h3>Liste des extraits</h3>
+        <ul>
+            {% for extrait in listExtraits %}
+                <li>
+                    {{ extrait.indice }}
+                    , proposé par {{ extrait.auteur }}
+                    , le {{ extrait.datePropo|date('d/m/Y') }}
+                    , status : {{ extrait.status }} 
+                    <div> {{ extrait.extrait }} </div>         
+                </li>
+            {% else %}
+                <li>Pas d'extraits</li>
+            {% endfor %}
+        </ul>
+        {{ include('L1m2PlatformBundle::pagination.html.twig', {'pl': 'l1m2_platform_extraits', 'page': page,'nbPages': nbPages}) }}
+    {% endblock %}
+    {% block javascripts %}
+    {% endblock %}     
+{% endblock %}
+

@@ -1,0 +1,291 @@
+/*
+
+*/
+
+@font-face {
+    font-family: 'pt_sansregular';
+    src: url('pts55f-webfont.eot');
+    src: url('pts55f-webfont.eot?#iefix') format('embedded-opentype'),
+         url('pts55f-webfont.woff') format('woff'),
+         url('pts55f-webfont.ttf') format('truetype'),
+         url('pts55f-webfont.svg#pt_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body 
+{
+    margin: 0px;
+    background-image: url(../images/fond.png);
+    font-family: arial;
+    background-attachment: fixed;
+    text-align : center
+}
+#tetepage, #piedpage
+{
+    position: fixed;
+    background-color: #C0C0C0;
+    width: 100%;
+}
+#tetepage
+{
+    top: 0;
+    background-image: url(../images/background.png);
+    heigth: 72px;
+}
+#overlay
+{
+    top: 0;
+    display: none;
+    position: fixed;
+    background-color: rgba(0,0,0,0.75);
+    height: 100%;
+    width: 100%;
+    z: 1000;
+    font-size: 1.2em;
+}
+#piedpage
+{
+    bottom: 0;
+}
+#contenu
+{
+    margin-top: 72px;
+    margin-bottom: 192px;
+}
+#div_grid1, #div_grid2
+{
+    display: inline-block;
+}
+#pioche
+{
+    display: block;
+    padding: 12px;
+    margin: 12px;
+    text-align: left;
+    font-size: 1em;
+    border: 3px solid #404040;
+}
+#div_mots
+{
+    display: none;
+}
+#table1, #table2 
+{
+    background-color: #C0C0C0;
+}
+.td_letter, .td_empty, .td_def, .td_index, .td_sel
+{
+    border: solid white;
+    height: 48px;
+}
+.td_def
+{
+    width: 120px;
+    text-align: right;
+    font-size: 1em;
+}
+.d_n1
+{
+    height: 25%;
+    width:  100%;
+    text-align: left;
+    font-size: 0.7em;     
+}
+.d_l
+{
+    height: 50%;
+    width: 90%;         
+    text-align: center;
+    font-size: 1.6em;
+    border: none;     
+    background-color: #C0C0C0;
+}
+.d_n2
+{
+    height: 25%;
+    width:  100%;        
+    text-align: right;
+    font-size: 0.7em;
+}
+.td_letter
+{
+    width: 48px;
+    text-align: center;
+}
+.td_sel
+{
+    width: 48px;
+    text-align: center;
+    border: 3px solid #404040;
+}
+.td_empty
+{
+    width: 48px;
+    background-color: #404040;
+}
+.td_index
+{
+    width: 24px;
+    color: #ffffff;
+    background-color: #404040;
+    text-align: center;
+    font-size: 1em;
+}
+
+.pgn,.pgn_cur  
+{
+    display: inline;
+    list-style: none;
+    margin:none;
+}
+.pgn_cur  
+{
+    border: 2px solid black;
+}
+
+a:link, .apgn:link
+{ 
+    color: blue 
+} /* Liens non visités */
+a:visited, .apgn:visited
+{ 
+    color: purple 
+} /* Liens visités */
+.apgn:link, a:hover, a:active, .apgn:hover, .apgn:active
+{
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 1em;
+    margin: 5px;
+    padding:5px;
+}
+.apgn:link
+{
+    background: #C0C0C0;
+}
+a:hover, a:active, .apgn:hover, .apgn:active
+{
+    text-decoration: none;
+    color: white;
+    background:  #404040;
+}
+
+.btn1,.btn
+{
+    background: #404040;
+    -webkit-border-radius: 10;
+    -moz-border-radius: 10;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 1em;
+    padding: 10px 20px 10px 20px;
+    margin: 5px 10px 5px 10px;
+    text-decoration: none;
+}
+
+.btn:hover 
+{
+    background: #808080;
+    text-decoration: none;
+}
+
+nav ul
+{
+    background-color: #C0C0C0;
+    padding: 10px;
+    text-align: left;   
+}
+nav div
+{
+    background-color: #404040;
+    color: white;
+    padding: 5px;
+    text-align: center;    
+}
+nav li 
+{
+    display: inline;
+    list-style: none;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+div h3, div ul, div p
+{
+    text-align: left; 
+    margin-left: 10px; 
+    margin-right: 10px; 
+}
+div li
+{
+    margin-left: 10px;
+    margin-right: 80px;
+    text-align: left;
+    margin-bottom: 10px;   
+}
+h3
+{
+    background-color:  #404040; 
+    padding-left: 10px; 
+    padding-right: 10px;
+    color:white; 
+}
+
+.exd_grille
+{
+    display: inline-block;
+}
+
+.extd_small,.extd_empty
+{
+    border: solid white;  
+    width: 36px;
+    height: 36px;
+    text-align: center;
+}
+.extd_large
+{
+    border: solid white;  
+    width: 90px;
+    height: 36px;
+    text-align: center;
+}
+.extd_empty
+{  
+    background-color: #404040;
+}
+.extd_small, .extd_large
+{    
+    background-color: #C0C0C0;
+}
+
+.exd_letter
+{
+    padding:5px;     
+    text-align: center;
+    font-size: 1em;
+    border: none;       
+}
+
+
+.exd_bottom
+{
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    font-size: 1em;
+    border: 3px solid black;
+    margin-top:40px;
+    padding:5px;    
+    background-color: #C0C0C0;
+}
+
+
+
+
+
+
+
+

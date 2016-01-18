@@ -1,0 +1,47 @@
+l1m2_platform_propo:
+    path:     /admin/proposer
+    defaults: { _controller: L1m2PlatformBundle:Extrait:proposer }
+
+l1m2_platform_extraits:
+    path:      /admin/extraits/{page}
+    defaults:  { _controller: L1m2PlatformBundle:Extrait:listerextraits, page: 1 }
+    requirements:
+        page: \d*
+
+l1m2_platform_transfos:
+    path:      /admin/transfos/{page}
+    defaults:  { _controller: L1m2PlatformBundle:Transfo:listertransfos, page: 1 }
+    requirements:
+        page: \d*
+
+l1m2_platform_valid:
+    path:      /admin/valider/{transfo_id}
+    defaults:  { _controller: L1m2PlatformBundle:Transfo:validermots }
+    requirements:
+        transfo_id: \d+
+
+
+
+l1m2_platform_initiales:
+    path:      /initiales/{page}
+    defaults:  { _controller: L1m2PlatformBundle:Extrait:listerinitiales, page: 1 }
+    requirements:
+        page: \d*
+
+l1m2_platform_trans:
+    path:      /transformer/{extrait_id}
+    defaults:  { _controller: L1m2PlatformBundle:Transfo:transformer }
+    requirements:
+        extrait_id: \d+
+
+l1m2_platform_anagrammes:
+    path:      /anagrammes/{page}
+    defaults:  { _controller: L1m2PlatformBundle:Transfo:listeranagrammes, page: 1 }
+    requirements:
+        page: \d*
+
+l1m2_platform_retro:
+    path:      /retrouver/{transfo_id}
+    defaults:  { _controller: L1m2PlatformBundle:Transfo:retrouver }
+    requirements:
+        transfo_id: \d+

@@ -1,0 +1,28 @@
+{# src/L1m2/PlatformBundle/Resources/views/Extrait/proposer.html.twig #}
+
+{% extends "L1m2PlatformBundle::layout.html.twig" %}
+{% block title %}
+    Proposer - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {% block tetepage %} 
+        <li><a href="{{ path('l1m2_core_admin') }}" >admin</a></li>
+        {{ parent() }}
+    {% endblock %}
+     {% block overlay %}
+        <div class="btn1"  id="message"></div>
+        <br/>
+        <input type="button" class="btn" value="ok" onclick="closePopUp()" />
+    {% endblock %}
+    {% block div_grid1 %}    
+        {% include "L1m2PlatformBundle:Extrait:form.html.twig" %}
+        <input type="button" class="btn" value="envoyer" onclick="getInputs()" />
+    {% endblock %}
+    {% block javascripts %}
+        <script type="text/javascript" src="{{ asset('bundles/l1m2core/js/common.js') }}" ></script>
+        <script type="text/javascript" src="{{ asset('bundles/l1m2core/js/script3.js') }}" ></script>
+    {% endblock %} 
+    
+{% endblock %}
+

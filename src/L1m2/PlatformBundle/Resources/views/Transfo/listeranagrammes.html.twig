@@ -1,0 +1,33 @@
+{# src/L1m2/PlatformBundle/Resources/views/Transfo/listeranagrammes.html.twig #}
+{% extends "L1m2PlatformBundle::layout.html.twig" %}
+{% block title %}
+    Lister - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {% block tetepage %}    
+        {{ parent() }}
+    {% endblock %}
+    {% block overlay %}
+    {% endblock %}
+    {% block contenu %}    
+        <h3>Liste des grilles d'anagrammes</h3>
+        <ul>
+            {% for transfo in listTransfos %}
+                <li>
+                    <a href="{{ path('l1m2_platform_retro', {'transfo_id': transfo.id}) }}">
+                    {{ transfo.resume }}  
+                    </a>
+                    , à partir des mots de {{ transfo.auteur }}
+                    , publiée le {{ transfo.dateParu|date('d/m/Y') }}       
+                </li>
+            {% else %}
+                <li>Pas de grille</li>
+            {% endfor %}
+        </ul>
+        {{ include('L1m2PlatformBundle::pagination.html.twig', {'pl': 'l1m2_platform_anagrammes', 'page': page,'nbPages': nbPages}) }}
+    {% endblock %}
+    {% block javascripts %}
+    {% endblock %}     
+{% endblock %}
+

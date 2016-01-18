@@ -1,0 +1,43 @@
+{# src/L1m2/PlatformBundle/Resources/views/Extrait/form.html.twig #}
+{{ form_start(form) }}
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
+    <ul>
+        {# Génération du label. #}
+        <li>{{ form_label(form.extrait, "L'extrait") }}</li>
+        {{ form_widget(form.extrait)  }}
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.extrait) }}
+        {# Génération du label. #}
+        <li>{{ form_label(form.indice, "L'indice") }} </li>
+        {{ form_widget(form.indice)  }}
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.indice) }}
+        {# Génération du label. #}
+        <li>{{ form_label(form.description, "La description de l'indice") }}</li>
+        {{ form_widget(form.description)  }}
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.description) }}
+        {# Génération du label. #}
+        <li>{{ form_label(form.reference, "Les reférences") }}</li>
+        {{ form_widget(form.reference)  }}
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.reference) }}
+        {# Génération du label. #}
+        <li>{{ form_label(form.auteur, "Votre pseudo") }}</li>
+        {{ form_widget(form.auteur)  }}
+        {# Affichage des erreurs pour ce champ précis. #}
+        {{ form_errors(form.auteur) }}
+    </ul>
+    <ul>{{ form_widget(form.entrees)  }}</ul>
+    {# Génération automatique des champs pas encore écrits.
+     Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+     et tous les champs cachés (type « hidden »). #}
+    {{ form_rest(form) }}  
+    {# Fermeture de la balise <form> du formulaire HTML #}
+{{ form_end(form) }}
+
+
+
+
+

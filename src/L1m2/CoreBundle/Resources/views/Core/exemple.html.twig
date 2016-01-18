@@ -1,0 +1,46 @@
+{# On utilise ici le layout général, qui se situe dans ce même CoreBundle maintenant #}
+{% extends "L1m2CoreBundle::layout.html.twig" %}
+
+{% block title %}
+    Exemple - {{ parent() }}
+{% endblock %}
+
+
+{% block contenu %}
+
+    <h3>L'extrait: "J'aime mixer les lettres"</h3>
+    <p>Ses lettres sont réparties entre</p> 
+    <ul>
+        <li>les initiales: JADE</li>
+        <li>une pioche: EEEEIILMMRRSSTTX</li>
+    </ul>
+
+    <h3>Transformer l'extrait</h3>
+    <p>Les initiales constituent la première colonne de la grille de transformation, la pioche est accrochée au bas de l'écran <p/>
+    {% set mots1 = 'J_ _ _ _ ,A_ _ _ _ ,D_ _ _ _ ,E_ _ _ _ ' %}
+    {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '36,36,36,36,36', 'mots': mots1, 'bas': 'EEEEIILMMRRSSTTX'}) }}
+    <p>Il faut remplir la grille jusqu'à ce que la pioche soit vide, en formant sur chaque ligne un nom commun de la langue française</p>
+    {% set mots1 = 'J_E_T_E_R,A_M_E_R_S,D_E_M_I_T,E_X_I_L_S' %}
+    {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '25,25,25,25,25', 'mots': mots1, 'bas': ''}) }}  
+    <p>La grille remplie peut être envoyée. Si elle est validée, elle sera utilisée pour générer une grille d'anagrammes</p>
+
+    <h3>Retrouver l'extrait</h3>
+    <p>Il faut déchiffrer une grille d'anagrammes</p>
+    {% set mots1 = 'EEJRT_ _ _ _ _ ,AEMRS_ _ _ _ _ ,DEIMT_D_E_M_I_T,EILSX_ _ _ _ _ ' %}
+    {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '90,36,36,36,36,36', 'mots': mots1}) }}
+    <p>Une deuxième grille affiche les lettres placées de l'extrait recherché</p>
+    {% set mots1 = ' __ _I_ _ __M, _ _E_ __D_ _ ,_ _ _T_ _ _ _ ' %}
+    {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '36,36,36,36,36,36,36,36', 'mots': mots1}) }}
+    <p>Lorsque tous les anagrammes sont déchiffrés, l'extrait est affiché ainsi qu'une référence</p>
+    {% set mots1 = 'J__A_I_M_E__M,I_X_E_R__D_E_S,_L_E_T_T_R_E_S' %}
+    {% set bas1 = "Cet extrait a été créé <br/>comme exemple pour ce site le 15/01/2016" %} 
+    {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '36,36,36,36,36,36,36,36', 'mots': mots1, 'bas': bas1}) }}
+
+    <h3>A vous de jouer</h3> 
+        <ul>
+            <li>choisir les <a href="{{ path('l1m2_platform_initiales') }}" >lettres initiales</a> des mots</li>
+            <li>choisir les <a href="{{ path('l1m2_platform_anagrammes') }}" >anagrammes</a> </li>  
+        </ul>    
+{% endblock %}
+
+

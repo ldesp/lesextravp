@@ -1,0 +1,29 @@
+<div class="exd_grille" >
+    <table >
+        {% for col in cols|split(',') %}
+            <colgroup><col width="{{ col }}px" ></colgroup>
+        {% endfor %}
+        <tbody>
+            {% for mot in mots|split(',') %}
+                <tr>
+                {% for lettre in mot|split('_') %}
+                    {% if lettre|length == 0 %}
+                        <td class ="extd_empty" ><div class="exd_letter"></div></td>
+                    {% endif %} 
+                    {% if lettre|length == 1 %}
+                        <td class ="extd_small" ><div class="exd_letter">{{ lettre }}</div></td>
+                    {% endif %} 
+                    {% if lettre|length > 1 %}
+                        <td class ="extd_large" ><div class="exd_letter">{{ lettre }}</div></td>
+                    {% endif %} 
+                {% endfor %}        
+                </tr>
+            {% endfor %}     
+        </tbody>
+    </table> 
+    {% if bas is defined %}
+        <div class="exd_bottom" >{{ bas|raw }}</div>
+    {% endif %} 
+</div>
+
+

@@ -1,0 +1,39 @@
+{# src/L1m2/PlatformBundle/Resources/views/Extrait/listerinitiales.html.twig #}
+{% extends "L1m2PlatformBundle::layout.html.twig" %}
+{% block title %}
+    Lister - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {% block tetepage %}    
+        {{ parent() }}
+    {% endblock %}
+    {% block overlay %}
+    {% endblock %}
+    {% block contenu %}    
+        <h3>Liste des initiales</h3>
+        <ul>
+            {% for extrait in listExtraits %}
+                <li>
+                    <a href="{{ path('l1m2_platform_trans', {'extrait_id': extrait.id}) }}">
+                    {{ extrait.indice }}
+                    </a>
+                    , {{ (extrait.pioche|length) }} lettres
+                    , publié le {{ extrait.dateParu|date('d/m/Y') }}
+                    {% if extrait.ntransfo == 1 %} 
+                    , 1 transformation
+                    {% endif %}          
+                    {% if extrait.ntransfo > 1 %} 
+                    , {{ extrait.ntransfo }} transformations
+                    {% endif %}                          
+                </li>
+            {% else %}
+                <li>Pas d'extraits</li>
+            {% endfor %}
+        </ul>
+        {{ include('L1m2PlatformBundle::pagination.html.twig', {'pl': 'l1m2_platform_initiales', 'page': page,'nbPages': nbPages}) }}
+    {% endblock %}
+    {% block javascripts %}
+    {% endblock %}     
+{% endblock %}
+

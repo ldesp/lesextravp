@@ -1,0 +1,18 @@
+{% extends "L1m2PlatformBundle::layout.html.twig" %}
+{% block title %}
+    Erreur404 - {{ parent() }}
+{% endblock %}
+{% block body %}
+    {% block tetepage %}    
+        {{ parent() }}
+    {% endblock %}
+    {% block overlay %}
+    {% endblock %}
+    {% block contenu %}  
+        <h3>Il y a un problème</h3>
+        <div>Le serveur a indiqué: "{{ status_code }} {{ status_text }}"</div>
+        <div>la page demandée n'existe pas</div>
+    {% endblock %}
+    {% block javascripts %}
+    {% endblock %}     
+{% endblock %}

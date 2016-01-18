@@ -1,0 +1,24 @@
+{# src/L1m2/PlatformBundle/Resources/views/Tranfo/formv.html.twig #}
+{{ form_start(form) }}
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
+     <ul>
+         {# Génération du label. #}
+         {{ form_label(form.status, "Choix du status") }}
+         {{ form_widget(form.status)  }}
+         {# Affichage des erreurs pour ce champ précis. #}
+         {{ form_errors(form.status) }} 
+     </ul>
+     {# Pour le bouton, pas de label ni d'erreur, on affiche juste le widget #}
+     {{ form_widget(form.valider, {'attr': {'class': 'btn'}}) }}   
+      {# Génération automatique des champs pas encore écrits.
+       Dans cet exemple, ce serait le champ CSRF (géré automatiquement par Symfony !)
+       et tous les champs cachés (type « hidden »). #}
+      {{ form_rest(form) }}  
+      {# Fermeture de la balise <form> du formulaire HTML #}
+{{ form_end(form) }}
+
+
+
+
+

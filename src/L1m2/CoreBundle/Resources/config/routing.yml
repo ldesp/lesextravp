@@ -1,0 +1,15 @@
+l1m2_core_home:
+    path:      /
+    defaults:  { _controller: L1m2CoreBundle:Core:index }
+
+l1m2_core_contact:
+    path:      /contact
+    defaults:  { _controller: L1m2CoreBundle:Core:contact }
+
+l1m2_core_exemple:
+    path:      /exemple
+    defaults:  { _controller: L1m2CoreBundle:Core:exemple }
+
+l1m2_core_admin:
+    path:      /admin
+    defaults:  { _controller: L1m2CoreBundle:Core:admin }

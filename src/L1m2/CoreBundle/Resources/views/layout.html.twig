@@ -1,0 +1,46 @@
+{# src/L1m2/CoreBundle/Resources/views/layout.html.twig #}
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">  
+        <meta name="viewport" content="width=device-width, initial-scale=1">   
+        <meta name="description" content="grille de lettres, anagrammes">
+        <meta name="author" content="ldesp">
+
+        <title>{% block title %}Les extranagrammes{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link href="{{ asset('bundles/l1m2core/css/style.css') }}" rel="stylesheet" />
+        {% endblock %}
+    </head>
+
+    <body>
+        <nav id=tetepage >
+            <ul>
+                {% block tetepage %}
+                    <li><a href="{{ path('l1m2_core_home') }}" >accueil</a></li>
+                    <li><a href="{{ path('l1m2_core_exemple') }}" >exemple</a></li>
+                    <li><a href="{{ path('l1m2_core_contact') }}" >contact</a></li>         
+                {% endblock %}
+            </ul>
+           {# On affiche tous les messages flash dont le nom est « notice » #}
+           {% for message in app.session.flashbag.get('notice') %}
+               <div >Message flash : {{ message }}</div>
+           {% endfor %}
+        </nav>
+
+        <div id =overlay   hidden = "true">
+            {% block overlay %}{% endblock %}
+        </div> 
+        <div id = contenu> 
+            {% block contenu %}{% endblock %}
+            <div id=div_grid1 >{% block div_grid1 %}{% endblock %}</div>
+            <div id=div_grid2 >{% block div_grid2 %}{% endblock %}</div>
+        </div> 
+        <div id=piedpage >{% block piedpage %}{% endblock %}</div> 
+        {% block javascripts %}{% endblock %}        
+    </body>
+
+</html>

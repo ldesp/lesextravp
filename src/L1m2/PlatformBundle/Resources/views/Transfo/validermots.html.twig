@@ -1,0 +1,27 @@
+{# src/L1m2/PlatformBundle/Resources/views/Transfo/validermots.html.twig #}
+{% extends "L1m2PlatformBundle::layout.html.twig" %}
+{% block title %}
+    Valider - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {% block tetepage %} 
+        <li><a href="{{ path('l1m2_core_admin') }}" >admin</a></li>   
+        {{ parent() }}
+    {% endblock %}
+    {% block overlay %}
+    {% endblock %}
+    {% block contenu %}
+    <h3>Liste proposée par {{ auteur }}</h3>
+         <ul>
+            {% for mot in listMots %}              
+              <li><a href="http://www.larousse.fr/dictionnaires/francais/{{ mot }}"> {{ mot}}</a></li> 
+            {% endfor %} 
+         </ul> 
+         {% include "L1m2PlatformBundle:Transfo:formv.html.twig" %}
+    {% endblock %}
+    {% block javascripts %}
+    {% endblock %} 
+    
+{% endblock %}
+
