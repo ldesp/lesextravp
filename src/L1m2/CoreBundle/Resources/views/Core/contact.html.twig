@@ -1,0 +1,29 @@
+{# On utilise ici le layout général, qui se situe dans ce même CoreBundle maintenant #}
+{% extends "L1m2CoreBundle::layout.html.twig" %}
+
+{% block title %}
+    Contact - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    {% block tetepage %}    
+        {{ parent() }}
+    {% endblock %}
+
+    {% block contenu %}  
+        <h3>Nous contacter</h3>
+           <ul>
+               <li>Vous rencontrez des problèmes</li> 
+               <img src="{{ asset('bundles/l1m2core/images/contact.png') }}"  alt="contact" title=""/> 
+               <li>Vous avez des suggestions</li> 
+               <img src="{{ asset('bundles/l1m2core/images/contact.png') }}"  alt="contact" title=""/> 
+           </ul>
+        <h3>Quelques informations sur la réalisation</h3>
+            <ul>
+                <li>Site redevable aux cours en ligne d'<a href="https://openclassrooms.com/" >OpenClassrooms</a></li> 
+                <li>Architecture basée sur le framework <a href="https://symfony.com/" >Symfony2</a></li>
+                <li>Code accessible sur <a href="https://github.com/ldesp/lesextravp" >GitHub</a></li>
+            <ul>
+    {% endblock %}
+{% endblock %}

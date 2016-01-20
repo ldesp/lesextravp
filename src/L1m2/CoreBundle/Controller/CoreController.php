@@ -17,12 +17,8 @@ class CoreController extends Controller
     // La page de contact
     public function contactAction(Request $request)
     {
-        // On récupère la session depuis la requête, en argument du contrôleur
-        $session = $request->getSession();
-        // Et on définit notre message
-        $session->getFlashBag()->add('notice', 'La page de contact n’est pas encore disponible, merci de revenir plus tard.');
-        // Enfin, on redirige simplement vers la page d'accueil
-        return new RedirectResponse($this->get('router')->generate('l1m2_core_home'));
+        // On retourne simplement la vue de la page de contact
+        return $this->get('templating')->renderResponse('L1m2CoreBundle:Core:contact.html.twig');
     }
 
     // La page d'exemple
