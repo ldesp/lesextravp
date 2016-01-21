@@ -19,7 +19,7 @@ class ExtraitType extends AbstractType
            ->add('description', 'textarea', array('attr' => array("class" => "desc1", "rows" => "2", "cols" => "65")))
            ->add('reference',   'textarea', array('attr' => array("class" => "refe1", "rows" => "5", "cols" => "65")))
            ->add('auteur',      'textarea', array('attr' => array("class" => "aute1",  "rows" => "2", "cols" => "65")))
-           ->add('entrees',     'textarea', array('required' => false, 'attr' => array("class" => "pioc1", "hidden" => "true")))
+           ->add('entrees',     'textarea', array('required' => false, 'attr' => array("class" => "pioc1")))
         //   ->add('envoyer',     'submit')
         ;
         // On ajoute une fonction qui va écouter un évènement

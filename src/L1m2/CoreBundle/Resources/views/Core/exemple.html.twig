@@ -19,11 +19,11 @@
     <p>Les initiales constituent la première colonne de la grille de transformation, la pioche est accrochée au bas de l'écran <p/>
     {% set mots1 = 'J_ _ _ _ ,A_ _ _ _ ,D_ _ _ _ ,E_ _ _ _ ' %}
     {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '36,36,36,36,36', 'mots': mots1, 'bas': 'EEEEIILMMRRSSTTX'}) }}
-    <p>Il faut remplir la grille jusqu'à ce que la pioche soit vide, en formant sur chaque ligne un nom commun de la langue française</p>
+    <p>Il faut remplir la grille jusqu'à ce que la pioche soit vide, en formant sur chaque ligne un mot de la langue française</p>
     {% set mots1 = 'J_E_T_E_R,A_M_E_R_S,D_E_M_I_T,E_X_I_L_S' %}
-    {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '25,25,25,25,25', 'mots': mots1, 'bas': ''}) }}  
-    <p>La grille remplie peut être envoyée. Si elle est validée, elle sera utilisée pour générer une grille d'anagrammes</p>
-
+    {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '25,25,25,25,25', 'mots': mots1, 'bas': ''}) }}
+    <p>La dernière colonne de la grille peut contenir des cases vides</p>
+    <p>La grille remplie est prête à être postée. Si elle est validée, elle sera utilisée pour générer une grille d'anagrammes</p> 
     <h3>Retrouver l'extrait</h3>
     <p>Il faut déchiffrer une grille d'anagrammes</p>
     {% set mots1 = 'EEJRT_ _ _ _ _ ,AEMRS_ _ _ _ _ ,DEIMT_D_E_M_I_T,EILSX_ _ _ _ _ ' %}

@@ -36,7 +36,6 @@ body
 #overlay
 {
     top: 0;
-    display: none;
     position: fixed;
     background-color: rgba(0,0,0,0.75);
     height: 100%;
@@ -66,7 +65,7 @@ body
     font-size: 1em;
     border: 3px solid #404040;
 }
-#div_mots
+#div_mots, #overlay, #entrees
 {
     display: none;
 }

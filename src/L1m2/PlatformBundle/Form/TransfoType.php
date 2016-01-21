@@ -14,7 +14,7 @@ class TransfoType extends AbstractType
     {
         $builder
            ->add('auteur',   'textarea', array('attr' => array("placeholder" => "Votre pseudo",  "rows" => "2", "cols" => "40")))
-           ->add('mots',     'textarea', array('label'  => false , 'attr' => array("class" => "mots1", "hidden" => "true")))
+           ->add('mots',     'textarea', array('label'  => false , 'attr' => array("class" => "mots1")))
            ->add('envoyer',  'submit')
         ;
     }
