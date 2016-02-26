@@ -30,7 +30,7 @@ class TransfoController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $listTransfos = $em
                     ->getRepository('L1m2PlatformBundle:Transfo')
-                    ->findByExtrait($id)
+                    ->findByExtrait($extrait->getId())
                 ;
                 if (count($listTransfos) > 0) 
                 {
