@@ -24,23 +24,20 @@ body
 #tetepage, #piedpage
 {
     position: fixed;
-    position: sticky;
-    position: webkit-sticky;
     background-color: #C0C0C0;
     width: 100%;
 }
 #tetepage
 {
     top: 0;
+    padding:10px;
     background-image: url(../images/background.png);
-    heigth: 72px;
+    height: 56px;
 }
 #overlay
 {
     top: 0;
     position: fixed;
-    position: sticky;
-    position: webkit-sticky;
     background-color: rgba(0,0,0,0.75);
     height: 100%;
     width: 100%;
@@ -53,21 +50,19 @@ body
 }
 #contenu
 {
-    margin-top: 72px;
-    margin-bottom: 192px;
+    margin-top: 80px;
+    margin-bottom: 256px;
 }
 #div_grid1, #div_grid2
 {
     display: inline-block;
 }
+
 #pioche
 {
     display: block;
-    padding: 12px;
-    margin: 12px;
-    text-align: left;
+    text-align: center;
     font-size: 1em;
-    border: 3px solid #404040;
 }
 #div_mots, #overlay, #entrees
 {
@@ -100,7 +95,7 @@ body
     height: 50%;
     width: 90%;         
     text-align: center;
-    font-size: 1.6em;
+    font-size: 1.5em;
     border: none;     
     background-color: #C0C0C0;
 }
@@ -140,7 +135,7 @@ body
 {
     display: inline;
     list-style: none;
-    margin:none;
+    margin: none;
 }
 .pgn_cur  
 {
@@ -162,7 +157,7 @@ a:visited, .apgn:visited
     border-radius: 5px;
     font-size: 1em;
     margin: 5px;
-    padding:5px;
+    padding: 5px;
 }
 .apgn:link
 {
@@ -174,7 +169,6 @@ a:hover, a:active, .apgn:hover, .apgn:active
     color: white;
     background:  #404040;
 }
-
 .btn1,.btn
 {
     background: #404040;
@@ -187,18 +181,49 @@ a:hover, a:active, .apgn:hover, .apgn:active
     margin: 5px 10px 5px 10px;
     text-decoration: none;
 }
-
-.btn:hover 
+.btn2, .eff
+{
+    background: #404040;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 1em;
+    height: 56px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-right: 3px;
+    margin-left: 3px;
+    text-align: center;
+    text-decoration: none;
+}
+.btn2
+{
+    width: 8%; 
+}
+.eff
+{
+    width: 18%; 
+}
+#left_shift
+{
+    padding-left: 4%; 
+}
+#right_shift
+{
+    padding-right: 4%; 
+}
+.btn:hover, .btn2:hover, .eff:hover 
 {
     background: #808080;
     text-decoration: none;
 }
 
 nav ul
-{
+{ 
     background-color: #C0C0C0;
     padding: 10px;
-    text-align: left;   
+    text-align: left; 
 }
 nav div
 {
@@ -273,16 +298,26 @@ h3
 }
 
 
-.exd_bottom
+.exd_btn2, .exd_eff
 {
-    width: 100%;
-    height: 40px;
-    text-align: center;
+    background: #404040;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    color: #ffffff;
     font-size: 1em;
-    border: 3px solid black;
-    margin-top:40px;
-    padding:5px;    
-    background-color: #C0C0C0;
+    height: 36px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.exd_btn2
+{
+    width: 36px; 
+}
+.exd_eff
+{
+    width: 72px; 
 }
 
 

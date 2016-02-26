@@ -28,8 +28,8 @@ function changeFocus(table, listecell, ind, back)
 
 function updateTableCells(cellid1, cellid2, letter)
 {  
-    table1.rows[getRow(cellid1)].cells[getCol(cellid1)].childNodes[1].value = letter;
-    table2.rows[getRow(cellid2)].cells[getCol(cellid2)].childNodes[1].value = letter;
+    table1.rows[getRow(cellid1)].cells[getCol(cellid1)].childNodes[1].textContent = letter;
+    table2.rows[getRow(cellid2)].cells[getCol(cellid2)].childNodes[1].textContent = letter;
 };
 
 function updateListLetter(ind, value)
@@ -38,32 +38,29 @@ function updateListLetter(ind, value)
     saveListLetters('listelettres', grid_id);
 };
 
-function reqLetter(item, event)
+function updateLetter(letter, backFlag)
 {
     if (jeuFini == true )
     {
         return;
     }
 
-    var backFlag = getBackFlag(event);
-
-    var ind1 = item.parentNode.firstChild.innerHTML - 1;
-    var ind2 = item.parentNode.lastChild.innerHTML - 1;
-
-
-    if (!keyToVal(event, backFlag, item))
-    {
+    if (isNotVisible(focusItem))
+    {    
         return;
     }
- 
-    updateListLetter(ind1, item.value);
+
+    var ind1 = focusItem.firstChild.innerHTML - 1;
+    var ind2 = focusItem.lastChild.innerHTML - 1;
+
+    updateListLetter(ind1, letter);
 
     updateTableCells(listecell1[ind1], listecell2[ind2], listelettres[ind1]);
 
     compareLetters();
 
     // changement du focus
-    if (item.parentNode.parentNode.parentNode.parentNode.id == 'table1')
+    if (focusItem.parentNode.parentNode.parentNode.id == 'table1')
     {
         changeFocus(table1, listecell1, ind1, backFlag );
     }
@@ -72,7 +69,7 @@ function reqLetter(item, event)
         changeFocus(table2, listecell2, ind2, backFlag );
     }
 };
-
+  
 function getMaxLength(listemots)
 {
     // calcul de la longueur max 
@@ -91,7 +88,7 @@ function getLetterCell(ind1, ind2)
 {
    var html = "<td  class=\"td_letter\"  onClick=\"takeFocus(this);\" >";
     html += "<div class=\"d_n1\">" + ind1 + "</div>";
-    html += "<textarea class=\"d_l\" cols=\"1\" rows=\"1\" maxlength =\"1\" onKeyUp=\"reqLetter(this, event)\" ></textarea>";
+    html += "<div class=\"d_l\"></div>"; ;
     html += "<div class=\"d_n2\">" + ind2 + "</div>";
     html += "</td>";
     return html;
@@ -241,7 +238,8 @@ function compareLetters()
         node1.style.display = 'none';
         node2.style.display = 'inline-block';
     }
-    button.value = '';
+    button.style.display = 'none';
+    document.getElementById('pioche').style.display = 'none';
     jeuFini = true;
     writeMessage(" BRAVO!!! Vous avez trouvé <BR/> référence:" + reference, MessageType.MT_info, true); 
 }
@@ -256,6 +254,18 @@ function initGrids()
     grid_id = remoteinputs[3];
     getListLetters(situeL.length, 'listelettres', grid_id);
     saveListLetters('listelettres', grid_id);
+
+    // destruction des tables existantes
+    table1 = document.getElementById("table1");
+    if(table1 != null)
+    {
+        table1.parentNode.removeChild(table1);
+    }
+    table2 = document.getElementById("table2");
+    if(table2 != null)
+    {
+        table2.parentNode.removeChild(table2);
+    }
 
     // creation des cellules des grilles
     table1 = document.createElement('table');
@@ -282,6 +292,8 @@ function initGrids()
     document.getElementById('div_grid1').appendChild(table1);
     document.getElementById('div_grid2').appendChild(table2);
     document.getElementById('div_grid2').style.display = 'none';
+    // creation du clavier
+    document.getElementById('pioche').innerHTML = getKeyboard();
     // focus sur la premiere case de la premiere grille
     focusItem = table1.rows[getRow(listecell1[1])].cells[getCol(listecell1[1])];
     takeFocus(table1.rows[getRow(listecell1[0])].cells[getCol(listecell1[0])]);

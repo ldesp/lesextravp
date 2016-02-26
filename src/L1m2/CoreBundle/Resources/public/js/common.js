@@ -17,6 +17,7 @@ var letterCounters = {
     "A":0, "B":0, "C":0, "D":0, "E":0, "F":0, "G":0, "H":0, "I":0, "J":0, "K":0, "L":0, "M":0,
     "N":0, "O":0, "P":0, "Q":0, "R":0, "S":0, "T":0, "U":0, "V":0, "W":0, "X":0, "Y":0, "Z":0
 };
+var listKey = [];
 
 function subLetterToCounters(letter)
 { 
@@ -49,19 +50,6 @@ function clearLetterCounters()
     }
 };
 
-function dumpLetterCounters()
-{
-    var pioche ="";
-    for (var key in letterCounters)
-    {
-        for (var i = 0; i < letterCounters[key]; i++)
-        { 
-            pioche += (key + " ");
-        }    
-    }
-    return pioche;
-};
-
 function countLetterCounters()
 {
     var count = 0;
@@ -74,6 +62,92 @@ function countLetterCounters()
     }
     return count;
 };
+
+function updateKeyCount(item)
+{   
+    var count = letterCounters[item.id.split('_')[1]];   
+    if (item.disabled) 
+    { 
+        if (count > 0)
+        { // disabled node becomes enabled 
+            item.lastChild.textContent = count;
+            item.disabled = false;
+        }
+    }
+    else
+    {
+       if (count == 0)
+       { // enabled node becomes disabled
+           item.disabled = true;
+           item.lastChild.textContent = count;    
+       } 
+       else if (item.lastChild.textContent != count)
+       { // count has changed
+           item.lastChild.textContent = count;
+       }
+    }
+};
+
+function updateKeyboard()
+{
+    if ( listKey.length == 0 )
+    {
+        // create list of keyboard nodes
+        listKey = document.getElementsByClassName("btn2");
+        // init content of keyboard nodes
+        for (var i = 0; i < listKey.length; i++)
+        {  
+            var item = listKey[i];
+            var key = item.id.split('_')[1];
+            var count = letterCounters[key];
+            item.disabled = (count == 0) ? true : false;
+            item.innerHTML = (count == 0) ? "&nbsp<sub>&nbsp</sub>" : key+"<sub>"+count+"</sub>";
+        }
+    }
+    else
+    {
+        // update count of keyboard nodes
+        for (var i = 0; i < listKey.length; i++)
+        {               
+            updateKeyCount(listKey[i]);
+        }
+    }
+};
+/* ************************************************* */
+function line(letters) {
+
+    var html ='';   
+    for (var i = 0; i < letters.length; i++)
+    {  
+        if (letters.charAt(i) != '<') 
+        {  
+            html+="<button id=\"k_" + letters.charAt(i) + "\"   class=\"btn2\"  onclick=\"input(this);\" >"+letters.charAt(i)+"</button>";  
+        } 
+        else
+        {  
+            html+="<button id=\"eff\"  class=\"eff\"  onclick=\"backspace();\">Eff</button>";  
+        }     
+    }
+    return html;
+};
+
+function getKeyboard()
+{
+    var html = "<div id=\"right_shift\">" + line("AZERTYUIOP") + "</div>";
+    html += ("<div id=\"left_shift\" >" + line("QSDFGHJKLM") + "</div>");
+    html += ("<div>"+ line("WXCVBN<") + "</div>");
+    return html;
+};
+
+function input(item)
+{ 
+    updateLetter(item.id.split('_')[1], false);
+};
+
+function backspace()
+{ 
+    updateLetter('', true);
+}; 
 
 /* ************************************************* */
 function getCellId(row, col)
@@ -102,23 +176,24 @@ function takeFocus(item)
     if(item == focusItem)
     {
        return;
-    }        
+    }
+
+    if (isNotVisible(item))
+    {    
+        return;
+    }
+        
     if (focusItem.getAttribute('class') == "td_sel")
     {
         releaseFocus();
     }
-    if (isNotVisible(item))
-    {
-        return;
-    }
+
     focusItem = item;
     item.setAttribute('class', "td_sel");
-    item.childNodes[1].focus();
 };
 
 function releaseFocus()   
 {
-    focusItem.childNodes[1].blur(); 
     focusItem.setAttribute('class', "td_letter");
 };
 
@@ -135,38 +210,6 @@ function isNotVisible(item)
         return true;
     }
     return false;
-};
-/* ************************************************* */
-function getBackFlag(event)
-{
-    var key = event.keyCode; 
-    return ((key == 8) || (key == 13));
-};
-
-function keyToVal(event, backFlag, item)
-{
-    var key = event.keyCode;
-  
-    if (((key < 65) || (key > 90)) && !backFlag && (key != 32))
-    {  // touches non traitees 
-         return false;   
-    }
-
-    if (isNotVisible(item.parentNode))
-    {    
-        return false;
-    }
-
-    if (!backFlag)
-    {
-        item.value = String.fromCharCode(key).toUpperCase();
-    }
-    else 
-    {
-        item.value = " ";
-    } 
-
-    return true; 
 };
 /* ************************************************* */
 var MessageType = {

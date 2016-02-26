@@ -16,25 +16,45 @@
     </ul>
 
     <h3>Transformer l'extrait</h3>
-    <p>Les initiales constituent la première colonne de la grille de transformation, la pioche est accrochée au bas de l'écran <p/>
+
+    <p>Les initiales constituent la première colonne de la grille de transformation, la pioche apparait comme un clavier cliquable sous la grille<p/>
+
     {% set mots1 = 'J_ _ _ _ ,A_ _ _ _ ,D_ _ _ _ ,E_ _ _ _ ' %}
-    {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '36,36,36,36,36', 'mots': mots1, 'bas': 'EEEEIILMMRRSSTTX'}) }}
-    <p>Il faut remplir la grille jusqu'à ce que la pioche soit vide, en formant sur chaque ligne un mot de la langue française</p>
+    {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '36,36,36,36,36', 'mots': mots1 }) }}
+    {% set mots1 = '<A_<Z_E4_R2_T2_<Y_<U_I2_<O_<P,<Q_S2_<D_<F_<G_<H_<J_<K_L1_M2,<W_X1_<C_<V_<B_<N_<' %}
+    {{ include('L1m2CoreBundle:Core:keyboard.html.twig', {'mots': mots1}) }}
+
+    <p>Il faut remplir la grille avec les lettres disponibles sur le clavier, en formant sur chaque ligne un mot de la langue française</p>
+
     {% set mots1 = 'J_E_T_E_R,A_M_E_R_S,D_E_M_I_T,E_X_I_L_S' %}
-    {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '25,25,25,25,25', 'mots': mots1, 'bas': ''}) }}
+    {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '25,25,25,25,25', 'mots': mots1}) }}
+    {% set mots1 = '<A_<Z_E0_R0_T0_<Y_<U_I0_<O_<P,<Q_S0_<D_<F_<G_<H_<J_<K_L0_M0,<W_X0_<C_<V_<B_<N_<' %}
+    {{ include('L1m2CoreBundle:Core:keyboard.html.twig', {'mots': mots1}) }}
+
     <p>La dernière colonne de la grille peut contenir des cases vides</p>
     <p>La grille remplie est prête à être postée. Si elle est validée, elle sera utilisée pour générer une grille d'anagrammes</p> 
+
     <h3>Retrouver l'extrait</h3>
-    <p>Il faut déchiffrer une grille d'anagrammes</p>
+
+    <p>Il faut déchiffrer une grille d'anagrammes. Cette grille se remplit à l'aide du clavier cliquable situé sous la grille</p>
+
     {% set mots1 = 'EEJRT_ _ _ _ _ ,AEMRS_ _ _ _ _ ,DEIMT_D_E_M_I_T,EILSX_ _ _ _ _ ' %}
     {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '90,36,36,36,36,36', 'mots': mots1}) }}
-    <p>Une deuxième grille affiche les lettres placées de l'extrait recherché</p>
+    {% set mots1 = 'A_Z_E_R_T_Y_U_I_O_P,Q_S_D_F_G_H_J_K_L_M,W_X_C_V_B_N_<' %}
+    {{ include('L1m2CoreBundle:Core:keyboard.html.twig', {'mots': mots1}) }}
+
+    <p>Une deuxième grille affiche les lettres placées de l'extrait recherché. Cette grille se remplit aussi à l'aide du clavier situé sous la grille</p>
+
     {% set mots1 = ' __ _I_ _ __M, _ _E_ __D_ _ ,_ _ _T_ _ _ _ ' %}
     {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '36,36,36,36,36,36,36,36', 'mots': mots1}) }}
-    <p>Lorsque tous les anagrammes sont déchiffrés, l'extrait est affiché ainsi qu'une référence</p>
+    {% set mots1 = 'A_Z_E_R_T_Y_U_I_O_P,Q_S_D_F_G_H_J_K_L_M,W_X_C_V_B_N_<' %}
+    {{ include('L1m2CoreBundle:Core:keyboard.html.twig', {'mots': mots1}) }}
+
+    <p>Lorsque tous les anagrammes sont déchiffrés, l'extrait est affiché </p>
+
     {% set mots1 = 'J__A_I_M_E__M,I_X_E_R__D_E_S,_L_E_T_T_R_E_S' %}
-    {% set bas1 = "Cet extrait a été créé <br/>comme exemple pour ce site le 15/01/2016" %} 
     {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '36,36,36,36,36,36,36,36', 'mots': mots1, 'bas': bas1}) }}
+
 
     <h3>A vous de jouer</h3> 
         <ul>

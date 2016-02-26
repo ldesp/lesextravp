@@ -2,7 +2,7 @@
 
 {% extends "L1m2PlatformBundle::layout.html.twig" %}
 {% block title %}
-    Transformer - {{ parent() }}
+    Retrouver - {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -15,7 +15,8 @@
         <input type="button" class="btn" value="ok" onclick="closePopUp()" />
     {% endblock %}
     {% block piedpage %} 
-         <input type="button" id="toggle" class="btn" value="extrait" onclick="changeGrids()" /> 
+         <div id="pioche"></div> 
+         <input type="button" id="toggle" class="btn" value="extrait" onclick="changeGrids()" />
          <p id ="entrees">{{ transfo.anagrammes }}_ID{{ transfo.id }}_{{ transfo.mots|replace({',' : ''}) }}_{{ transfo.extrait.reference }}<p> 
     {% endblock %}
     {% block javascripts %}

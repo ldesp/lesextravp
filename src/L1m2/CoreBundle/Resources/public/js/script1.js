@@ -18,7 +18,7 @@ function listeMots()
     {   
         for (var j = COL_OFFSET - 1; j < COL_OFFSET + ncol; j++) 
         {
-            var letter = table1.rows[i].cells[j].childNodes[1].value;
+            var letter = table1.rows[i].cells[j].childNodes[1].textContent;
             if (letter != " ")
             {
                     liste += letter;
@@ -124,8 +124,8 @@ function updateListLetter(ind, value)
     // sauvegarde de la nouvelle lettre       
     listelettres[ind] = letter;
     saveListLetters('listelettresw', grid_id);
-    // affichage et verification si pioche vide
-    document.getElementById('pioche').innerHTML = dumpLetterCounters();
+    // mise à jour de la pioche
+    updateKeyboard();
     var count = countLetterCounters();
     if (count == 0)
     {
@@ -137,24 +137,23 @@ function updateListLetter(ind, value)
     }  
 };
 
-function reqLetter(item, event)
+function updateLetter(letter, backFlag)
 { 
-    var backFlag = getBackFlag(event);
-    var id = parseInt(item.parentNode.id.split('_')[1]);
-    var ind = getIndex(id);
-
-    if (!keyToVal(event, backFlag, item))
-    {
+    if (isNotVisible(focusItem))
+    {    
         return;
     }
- 
-    updateListLetter(ind, item.value);
 
-    table1.rows[getRow(id)].cells[getCol(id)].childNodes[1].value = listelettres[ind];
+    var id = focusItem.id.split('_')[1];
+    var ind = getIndex(id);
+
+    updateListLetter(ind, letter);
+
+    table1.rows[getRow(id)].cells[getCol(id)].childNodes[1].textContent = listelettres[ind];
  
     // changement du focus
     changeFocus(id, backFlag);
-};  
+};
 
 function getTableContent(colonne1)
 {
@@ -175,9 +174,7 @@ function getTableContent(colonne1)
 
         html += "<td  class=\"td_letter\" >";  
         html += "<div class=\"d_n1\"></div>";         
-        html += "<textarea class=\"d_l\" cols=\"1\" rows=\"1\" maxlength =\"1\" readonly=\"true\" >";
-        html += colo.charAt(i);
-        html += "</textarea>";
+        html += "<div class=\"d_l\">" + colo.charAt(i) + "</div>"; 
         html += "<div class=\"d_n2\"></div>";  
         html += "</td>";
      
@@ -185,8 +182,7 @@ function getTableContent(colonne1)
         {   
             html += "<td  class=\"td_letter\"  onClick=\"takeFocus(this);\" >";  
             html += "<div class=\"d_n1\"></div>";               
-            html += "<textarea class=\"d_l\" cols=\"1\" rows=\"1\" maxlength =\"1\" onKeyUp=\"reqLetter(this, event)\" >";
-            html += "</textarea>";
+            html += "<div class=\"d_l\"></div>"; 
             html += "<div class=\"d_n2\"></div>";   
             html += "</td>";
         }
@@ -224,7 +220,7 @@ function updatePage(colonne1)
         for (var icol = COL_OFFSET; icol < ncol + COL_OFFSET; icol++)
         {
              var node = table1.rows[irow].cells[icol];
-             node.childNodes[1].value = listelettres[ind];
+             node.childNodes[1].textContent = listelettres[ind];
              node.id = 't_' + getCellId(irow, icol)
              ind++;
         }
@@ -232,7 +228,8 @@ function updatePage(colonne1)
     document.getElementById('div_grid1').appendChild(table1);
     // initialisation de la pioche
     initNodes(document.getElementById('pioche'), document.getElementById('div_mots')); 
-    pioche.innerHTML = dumpLetterCounters();
+    document.getElementById('pioche').innerHTML = getKeyboard();
+    updateKeyboard();
     if (countLetterCounters() == 0)
     {
         checkResult();
