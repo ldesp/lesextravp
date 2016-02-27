@@ -51,7 +51,8 @@ class TransfoController extends Controller
             }
             else
             {
-                throw $this->createNotFoundException("Il y a un probleme");
+                $request->getSession()->getFlashBag()->add('notice', 'Il y a un probleme dans les mots');
+                // throw $this->createNotFoundException("Il y a un probleme");
             }
         }
         return $this->render('L1m2PlatformBundle:Transfo:transformer.html.twig', array(

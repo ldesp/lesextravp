@@ -124,17 +124,6 @@ function updateListLetter(ind, value)
     // sauvegarde de la nouvelle lettre       
     listelettres[ind] = letter;
     saveListLetters('listelettresw', grid_id);
-    // mise à jour de la pioche
-    updateKeyboard();
-    var count = countLetterCounters();
-    if (count == 0)
-    {
-        checkResult();
-    }
-    else if (count == 1)
-    { 
-        toggleNodes(document.getElementById('pioche'), document.getElementById('div_mots'));   
-    }  
 };
 
 function updateLetter(letter, backFlag)
@@ -150,9 +139,23 @@ function updateLetter(letter, backFlag)
     updateListLetter(ind, letter);
 
     table1.rows[getRow(id)].cells[getCol(id)].childNodes[1].textContent = listelettres[ind];
- 
+
+    // mise à jour de la pioche
+    updateKeyboard();
+
     // changement du focus
     changeFocus(id, backFlag);
+
+    // verifier si toutes les lettres ont ete utilisees
+    var count = countLetterCounters();
+    if (count == 0)
+    {
+        checkResult();
+    }
+    else if (count == 1)
+    { 
+        toggleNodes(document.getElementById('pioche'), document.getElementById('div_mots'));   
+    }  
 };
 
 function getTableContent(colonne1)
