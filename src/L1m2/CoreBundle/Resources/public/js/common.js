@@ -63,6 +63,19 @@ function countLetterCounters()
     return count;
 };
 
+function dumpLetterCounters()
+{
+    var pioche ="";
+    for (var key in letterCounters)
+    {
+        for (var i = 0; i < letterCounters[key]; i++)
+        { 
+            pioche += (key + " ");
+        }    
+    }
+    return pioche;
+};
+
 function updateKeyCount(item)
 {   
     var count = letterCounters[item.id.split('_')[1]];   
