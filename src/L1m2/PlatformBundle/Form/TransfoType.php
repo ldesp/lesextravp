@@ -13,8 +13,8 @@ class TransfoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-           ->add('auteur',   'textarea', array('attr' => array("placeholder" => "Votre pseudo",  "rows" => "2", "cols" => "40")))
-           ->add('mots',     'textarea', array('label'  => false , 'attr' => array("class" => "mots1")))
+           ->add('auteur',   'textarea', array('attr' => array("placeholder" => "Votre pseudo",  "rows" => "1", "cols" => "40")))
+           ->add('mots',     'textarea', array('label'  => false ,  'attr' => array("class" => "mots1", "hidden" => true)))
            ->add('envoyer',  'submit')
         ;
     }
