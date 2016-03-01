@@ -138,11 +138,53 @@ function updateKeyboard()
     {
         // update count of keyboard nodes
         for (var i = 0; i < listKey.length; i++)
-        {               
+        {   
             updateKeyCount(listKey[i]);
         }
     }
 };
+
+function updateWithAnagram(word)
+{
+    if ( listKey.length == 0 )
+    {
+        // create list of keyboard nodes
+        listKey = document.getElementsByClassName("btn2");  
+    }
+    // update keyboard nodes according letters of word
+    for (var i = 0; i < listKey.length; i++)
+    { 
+        var item = listKey[i];
+        if( word.indexOf(item.id.split('_')[1]) > -1 )
+        {
+             item.disabled = false;
+             item.style.backgroundColor = "#404040";
+        } 
+        else
+        {
+             item.disabled = true;
+             item.style.backgroundColor = "#808080";
+        }
+    }
+};
+
+function updateWithExtract()
+{
+    if ( listKey.length == 0 )
+    {
+        // create list of keyboard nodes
+        listKey = document.getElementsByClassName("btn2");  
+    }
+    // activate all keyboard nodes
+    for (var i = 0; i < listKey.length; i++)
+    { 
+        var item = listKey[i];
+        item.disabled = false;
+        item.style.backgroundColor = "#404040";
+    }
+};
+
+
 /* ************************************************* */
 function line(letters) {
 

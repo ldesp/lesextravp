@@ -3,6 +3,7 @@
 
 var table1;
 var listecell1; 
+var savedRow;
 
 var table2;
 var listecell2;
@@ -23,7 +24,7 @@ function changeFocus(table, listecell, ind, back)
     idx = (idx > listecell.length - 1) ? listecell.length - 1 : idx;
     // changement du focus
     idx = listecell[idx];
-    takeFocus(table.rows[getRow(idx)].cells[getCol(idx)]); 
+    takeFocusK(table.rows[getRow(idx)].cells[getCol(idx)]); 
 }; 
 
 function updateTableCells(cellid1, cellid2, letter)
@@ -69,6 +70,26 @@ function updateLetter(letter, backFlag)
         changeFocus(table2, listecell2, ind2, backFlag );
     }
 };
+
+function takeFocusK(item)
+{
+    if (item.parentNode.parentNode.parentNode.id == 'table1')
+    {
+        var irow = getRow(listecell1[item.firstChild.innerHTML - 1]);          
+        if (irow != savedRow){ 
+            updateWithAnagram(table1.rows[irow].cells[0].textContent);
+            savedRow = irow;
+        }
+    } 
+    else
+    {
+        if (savedRow != -1){ 
+            updateWithExtract();
+            savedRow = -1;
+        }
+    }         
+    takeFocus(item);
+};
   
 function getMaxLength(listemots)
 {
@@ -86,7 +107,7 @@ function getMaxLength(listemots)
 
 function getLetterCell(ind1, ind2)
 {
-   var html = "<td  class=\"td_letter\"  onClick=\"takeFocus(this);\" >";
+   var html = "<td  class=\"td_letter\"  onClick=\"takeFocusK(this);\" >";
     html += "<div class=\"d_n1\">" + ind1 + "</div>";
     html += "<div class=\"d_l\"></div>"; ;
     html += "<div class=\"d_n2\">" + ind2 + "</div>";
@@ -214,12 +235,16 @@ function changeGrids()
     {
         node2.style.display = 'none';
         node1.style.display = 'inline-block';
+        if (savedRow != -1){ 
+            updateWithAnagram(table1.rows[savedRow].cells[0].textContent);
+        }
         button.value = 'extrait';
     }
     else
     {
         node1.style.display = 'none';
         node2.style.display = 'inline-block';
+        updateWithExtract();
         button.value = 'anagrammes';
     }
 }
@@ -296,7 +321,9 @@ function initGrids()
     document.getElementById('pioche').innerHTML = getKeyboard();
     // focus sur la premiere case de la premiere grille
     focusItem = table1.rows[getRow(listecell1[1])].cells[getCol(listecell1[1])];
-    takeFocus(table1.rows[getRow(listecell1[0])].cells[getCol(listecell1[0])]);
+    savedRow = 1;
+    takeFocusK(table1.rows[getRow(listecell1[0])].cells[getCol(listecell1[0])]);
+    
     // verification que le jeu n'est pas terminé
     jeuFini = false;
     lettresjointes = remoteinputs[4];
