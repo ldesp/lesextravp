@@ -62,7 +62,8 @@ function checkResult()
             return;
         }
         mots[0].value = listeMots();
-        toggleNodes(document.getElementById('div_mots'), document.getElementById('pioche'));
+        // activation de l'envoi
+        document.getElementById('div_mots').style.display = 'block';
     } 
 };
 
@@ -154,7 +155,8 @@ function updateLetter(letter, backFlag)
     }
     else if (count == 1)
     { 
-        toggleNodes(document.getElementById('pioche'), document.getElementById('div_mots'));   
+         // desactivation de l'envoi 
+         document.getElementById('div_mots').style.display = 'none';
     }  
 };
 
@@ -203,6 +205,10 @@ function initCounters(colo, pioche)
     // dimension de la grille
     nrow = colo.length;
     ncol = Math.ceil(pioche.length / colo.length);
+    // representation de la pioche sur le clavier virtuel
+    document.getElementById('pioche').innerHTML = getKeyboard();
+    updateKeyboard()
+
 };
 
 function updatePage(colonne1)
@@ -229,9 +235,9 @@ function updatePage(colonne1)
         }
     }     
     document.getElementById('div_grid1').appendChild(table1);
-    // initialisation de la pioche
-    initNodes(document.getElementById('pioche'), document.getElementById('div_mots')); 
-    document.getElementById('pioche').innerHTML = getKeyboard();
+    // desactivation de l'envoi
+    document.getElementById('div_mots').style.display = 'none';
+    // mise a jour de la pioche
     updateKeyboard();
     if (countLetterCounters() == 0)
     {

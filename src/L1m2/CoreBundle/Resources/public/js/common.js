@@ -76,6 +76,24 @@ function dumpLetterCounters()
     return pioche;
 };
 
+function initKey(item)
+{   
+    var count = letterCounters[item.id.split('_')[1]];   
+    if (count == 0)
+    {
+        item.disabled = true;
+        item.firstChild.textContent = "" ;
+        item.style.backgroundColor = "#808080";
+    } 
+    else 
+    {
+        item.disabled = false;
+        item.lastChild.textContent = count;
+    }
+};
+
+
+
 function updateKeyCount(item)
 {   
     var count = letterCounters[item.id.split('_')[1]];   
@@ -84,7 +102,9 @@ function updateKeyCount(item)
         if (count > 0)
         { // disabled node becomes enabled 
             item.lastChild.textContent = count;
+            item.style.backgroundColor = "#404040";
             item.disabled = false;
+
         }
     }
     else
@@ -92,6 +112,7 @@ function updateKeyCount(item)
        if (count == 0)
        { // enabled node becomes disabled
            item.disabled = true;
+           item.style.backgroundColor = "#808080";
            item.lastChild.textContent = count;    
        } 
        else if (item.lastChild.textContent != count)
@@ -110,11 +131,7 @@ function updateKeyboard()
         // init content of keyboard nodes
         for (var i = 0; i < listKey.length; i++)
         {  
-            var item = listKey[i];
-            var key = item.id.split('_')[1];
-            var count = letterCounters[key];
-            item.disabled = (count == 0) ? true : false;
-            item.innerHTML = (count == 0) ? "&nbsp<sub>&nbsp</sub>" : key+"<sub>"+count+"</sub>";
+            initKey(listKey[i]);
         }
     }
     else
@@ -134,7 +151,8 @@ function line(letters) {
     {  
         if (letters.charAt(i) != '<') 
         {  
-            html+="<button id=\"k_" + letters.charAt(i) + "\"   class=\"btn2\"  onclick=\"input(this);\" >"+letters.charAt(i)+"</button>";  
+            html+="<button id=\"k_" + letters.charAt(i) + "\"   class=\"btn2\"  onclick=\"input(this);\" >"
+                   + letters.charAt(i) + "<sub>&nbsp</sub></button>";  
         } 
         else
         {  
