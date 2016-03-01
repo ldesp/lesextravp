@@ -348,12 +348,26 @@ class Transfo extends Proposition
      *
      * @return integer
      */
-    public static function metricListeListe($liste1, $liste2)
+    public static function metricListeListe2($liste1, $liste2)
     {
         $metric = 0;
         foreach ($liste2 as $mot)
         {
             $metric += self::metricListeMots($liste1, $mot);
+        }
+        return $metric;
+    }
+    /**
+     *  metric between 2 lists of words
+     *
+     * @return integer
+     */
+    public static function metricListeListe($liste1, $liste2)
+    {
+        $metric = 0;
+        for ($i = 0; $i < min(count($liste1), count($liste2)); $i++)
+        {
+            $metric += self::metricMots($liste1[$i], $liste2[$i]);
         }
         return $metric;
     }

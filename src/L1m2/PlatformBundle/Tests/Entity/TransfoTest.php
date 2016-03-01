@@ -26,11 +26,11 @@ class TransfoTest extends \PHPUnit_Framework_TestCase
 
     public function testMetricListeListe()
     {
-        $a2 = array('POMME', 'ANANAS', 'POIRES');
-        $a1 = array('POIRE', 'POMPE', 'A', '');
+        $a2 = array('POMME', 'FRAISE', 'ANANAS');
+        $a1 = array('POIRE', 'CERISE', 'BANANE', '');
         $result = Transfo::metricListeListe($a1, $a2);
         // assert that 
-        $this->assertEquals(10, $result);
+        $this->assertEquals(6, $result);
     } 
 
     public function testGenererAnagrammes()
