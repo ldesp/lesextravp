@@ -13,7 +13,7 @@
     font-style: normal;
 }
 
-body 
+body
 {
     margin: 0px;
     background-image: url(../images/fond.png);
@@ -68,7 +68,7 @@ body
 {
     display: none;
 }
-#table1, #table2 
+#table1, #table2
 {
     background-color: #C0C0C0;
 }
@@ -88,23 +88,26 @@ body
     height: 25%;
     width:  100%;
     text-align: left;
-    font-size: 0.7em;     
+    font-size: 0.7em;
+    line-height: 100%;
 }
 .d_l
 {
     height: 50%;
-    width: 90%;         
+    width: 90%;
     text-align: center;
     font-size: 1.5em;
-    border: none;     
+    border: none;
     background-color: #C0C0C0;
+    line-height: 100%;
 }
 .d_n2
 {
     height: 25%;
-    width:  100%;        
+    width:  100%;
     text-align: right;
     font-size: 0.7em;
+    line-height: 100%;
 }
 .td_letter
 {
@@ -131,24 +134,24 @@ body
     font-size: 1em;
 }
 
-.pgn,.pgn_cur  
+.pgn,.pgn_cur
 {
     display: inline;
     list-style: none;
     margin: none;
 }
-.pgn_cur  
+.pgn_cur
 {
     border: 2px solid black;
 }
 
 a:link, .apgn:link
-{ 
-    color: blue 
+{
+    color: blue
 } /* Liens non visités */
 a:visited, .apgn:visited
-{ 
-    color: purple 
+{
+    color: purple
 } /* Liens visités */
 .apgn:link, a:hover, a:active, .apgn:hover, .apgn:active
 {
@@ -197,40 +200,40 @@ a:hover, a:active, .apgn:hover, .apgn:active
 }
 .btn2
 {
-    width: 8%; 
+    width: 8%;
 }
 .eff
 {
-    width: 18%; 
+    width: 18%;
 }
 #left_shift
 {
-    padding-left: 4%; 
+    padding-left: 4%;
 }
 #right_shift
 {
-    padding-right: 4%; 
+    padding-right: 4%;
 }
-.btn:hover, .btn2:hover, .eff:hover 
+.btn:hover, .btn2:hover, .eff:hover
 {
     background: #808080;
     text-decoration: none;
 }
 
 nav ul
-{ 
+{
     background-color: #C0C0C0;
     padding: 10px;
-    text-align: left; 
+    text-align: left;
 }
 nav div
 {
     background-color: #404040;
     color: white;
     padding: 5px;
-    text-align: center;    
+    text-align: center;
 }
-nav li 
+nav li
 {
     display: inline;
     list-style: none;
@@ -240,23 +243,23 @@ nav li
 
 div h3, div ul, div p
 {
-    text-align: left; 
-    margin-left: 10px; 
-    margin-right: 10px; 
+    text-align: left;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 div li
 {
     margin-left: 10px;
     margin-right: 80px;
     text-align: left;
-    margin-bottom: 10px;   
+    margin-bottom: 10px;
 }
 h3
 {
-    background-color:  #404040; 
-    padding-left: 10px; 
+    background-color:  #404040;
+    padding-left: 10px;
     padding-right: 10px;
-    color:white; 
+    color:white;
 }
 
 .exd_grille
@@ -266,33 +269,33 @@ h3
 
 .extd_small,.extd_empty
 {
-    border: solid white;  
+    border: solid white;
     width: 36px;
     height: 36px;
     text-align: center;
 }
 .extd_large
 {
-    border: solid white;  
+    border: solid white;
     width: 90px;
     height: 36px;
     text-align: center;
 }
 .extd_empty
-{  
+{
     background-color: #404040;
 }
 .extd_small, .extd_large
-{    
+{
     background-color: #C0C0C0;
 }
 
 .exd_letter
 {
-    padding:5px;     
+    padding:5px;
     text-align: center;
     font-size: 1em;
-    border: none;       
+    border: none;
 }
 
 
@@ -313,17 +316,42 @@ h3
 
 .exd_btn2
 {
-    width: 36px; 
+    width: 36px;
 }
 .exd_eff
 {
-    width: 72px; 
+    width: 72px;
+}
+@media all and (max-width:512px)
+{
+  .td_letter, .td_empty, .td_def, .td_index, .td_sel
+  {
+      height: 36px;
+  }
+  .d_n1, .d_n2
+  {
+      font-size:0.6em
+  }
+  .d_l
+  {
+      font-size: 1.2em;
+  }
+  .btn2, .eff
+  {
+    height: 42px;
+    font-size: 0.8em;
+  }
 }
 
+@media all and (min-width:1024px)
+{
+  .btn2
+  {
+    width: 80px;
+  }
+  .eff
+  {
+    width: 180px;
+  }
 
-
-
-
-
-
-
+}
