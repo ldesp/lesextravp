@@ -1,7 +1,7 @@
 /* enable strict mode */
 "use strict";
 
-var COL_OFFSET = 3;
+var COL_OFFSET = 2;
 
 var listelettres;
 var grid_id;
@@ -164,9 +164,9 @@ function getTableContent(colonne1)
 {
     var colo = colonne1.monFiltre().replace(/[\s]+/g,"").toUpperCase();
     // dimensionnement de la colonne de definition
-    var html = "<colgroup><col width='120'/></colgroup>";
+    var html = "";
     // dimensionnement des autres colonnes
-    for (var i=1; i<ncol+COL_OFFSET; i++)
+    for (var i=0; i<ncol+COL_OFFSET; i++)
     {    
         html += "<colgroup><col width='20'/></colgroup>";
     }
@@ -174,7 +174,6 @@ function getTableContent(colonne1)
     for (var i = 0; i < nrow; i++)
     {   
         html += "<tr>";
-        html +=  "<td class=\"td_def\" >" + "</td>";
         html +=  "<td class=\"td_index\" >" + alphabet.charAt(i) + "</td>";
 
         html += "<td  class=\"td_letter\" >";  
@@ -206,7 +205,7 @@ function initCounters(colo, pioche)
     nrow = colo.length;
     ncol = Math.ceil(pioche.length / colo.length);
     // representation de la pioche sur le clavier virtuel
-    document.getElementById('pioche').innerHTML = getKeyboard();
+    document.getElementById('pioche').innerHTML = getKeyboard(false);
     updateKeyboard()
 
 };

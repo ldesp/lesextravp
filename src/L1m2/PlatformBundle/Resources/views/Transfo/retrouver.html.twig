@@ -16,8 +16,7 @@
     {% endblock %}
     {% block piedpage %} 
          <div id="pioche"></div> 
-         <input type="button" id="toggle" class="btn" value="extrait" onclick="changeGrids()" />
-         <p id ="entrees">{{ transfo.anagrammes }}_ID{{ transfo.id }}_{{ transfo.mots|replace({',' : ''}) }}_{{ transfo.extrait.reference }}<p> 
+         <p id ="entrees">{{ transfo.anagrammes }}_ID{{ transfo.id }}_{{ transfo.mots|replace({',' : ''}) }}_{{ transfo.extrait.reference }}</p> 
     {% endblock %}
     {% block javascripts %}
         <script type="text/javascript" src="{{ asset('bundles/l1m2core/js/common.js') }}" ></script>

@@ -5,7 +5,11 @@
             {% if couple|first == couple|last %}  
                 {% if couple|first == '<' %}  
                     <button class="exd_eff">Eff</button>  
-                {% else %} 
+                {% elseif couple|first == '>' %}
+                    <button class="exd_toggle">extrait</button> 
+                {% elseif couple|first == '=' %}               
+                    <button class="exd_toggle">anagrammes</button> 
+                {% else %}           
                     <button class="exd_btn2">{{ couple|first }}</button>
                 {% endif %} 
             {% else %}

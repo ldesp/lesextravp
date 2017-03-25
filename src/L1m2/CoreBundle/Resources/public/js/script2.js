@@ -14,7 +14,7 @@ var reference;
 var jeuFini;
 var grid_id;
 
-var ncol2=13;
+var ncol2=12;
 
 function changeFocus(table, listecell, ind, back)
 {
@@ -75,7 +75,7 @@ function takeFocusK(item)
 {
     if (item.parentNode.parentNode.parentNode.id == 'table1')
     {
-        var irow = getRow(listecell1[item.firstChild.innerHTML - 1]);          
+        var irow = getRow(listecell1[item.firstChild.innerHTML - 1]) - 1;  
         if (irow != savedRow){ 
             updateWithAnagram(table1.rows[irow].cells[0].textContent);
             savedRow = irow;
@@ -119,10 +119,9 @@ function getContentTable1(listeM, situeL)
 {
      // calcul de la longueur du mot le plus long
     var maxlength  = getMaxLength(listeM);
-    // dimensionnement de la colonne de definition
-    var html = "<colgroup><col width='120'/></colgroup>";
-    // dimensionnement des autres colonnes
-    for (var i = 1; i < maxlength + 2; i++)
+    var html ='';
+    // dimensionnement des colonnes
+    for (var i = 0; i < maxlength; i++)
     {    
         html += "<colgroup><col width='20'/></colgroup>";
     }
@@ -130,9 +129,10 @@ function getContentTable1(listeM, situeL)
     var ind = 0;
     for (var i = 0; i < listeM.length; i++)
     {   
+        // ajout rang anagramme 
+        html += "<tr><td colspan=\"20\" class=\"td_def\">" + listeM[i] + "</td></tr>";
+        // ajout  rang cases 
         html += "<tr>";
-        html +=  "<td class=\"td_def\" >" + listeM[i] + "</td>";
-        html +=  "<td class=\"td_index\" >" + alphabet.charAt(i) + "</td>";
         for (var j = 0; j < maxlength; j++)
         {   
             if (j < listeM[i].length)  
@@ -247,6 +247,7 @@ function changeGrids()
         updateWithExtract();
         button.value = 'anagrammes';
     }
+    button.style.backgroundColor = "#404040"
 }
 
 function compareLetters()
@@ -266,7 +267,7 @@ function compareLetters()
     button.style.display = 'none';
     document.getElementById('pioche').style.display = 'none';
     jeuFini = true;
-    writeMessage(" BRAVO!!! Vous avez trouvé <BR/> référence:" + reference, MessageType.MT_info, true); 
+    writeMessage(" BRAVO!!! Vous avez trouvé.<BR/> Référence:" + reference, MessageType.MT_info, true); 
 }
     
 function initGrids()
@@ -318,9 +319,10 @@ function initGrids()
     document.getElementById('div_grid2').appendChild(table2);
     document.getElementById('div_grid2').style.display = 'none';
     // creation du clavier
-    document.getElementById('pioche').innerHTML = getKeyboard();
+    document.getElementById('pioche').innerHTML = getKeyboard(true);
     // focus sur la premiere case de la premiere grille
     focusItem = table1.rows[getRow(listecell1[1])].cells[getCol(listecell1[1])];
+    // ne pas choisir le premier rang pour forcer la mise a jour du clavier
     savedRow = 1;
     takeFocusK(table1.rows[getRow(listecell1[0])].cells[getCol(listecell1[0])]);
     

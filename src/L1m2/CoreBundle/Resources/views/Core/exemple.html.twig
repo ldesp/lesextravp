@@ -39,17 +39,18 @@
     <p>Il faut déchiffrer une grille d'anagrammes. Cette grille se remplit à l'aide du clavier cliquable situé sous la grille</p>
 
     {% set mots1 = 'EEJRT_ _ _ _ _ ,AEMRS_ _ _ _ _ ,DEIMT_D_E_M_I_T,EILSX_ _ _ _ _ ' %}
-    {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '90,36,36,36,36,36', 'mots': mots1}) }}
-    {% set mots1 = 'A_Z_E_R_T_Y_U_I_O_P,Q_S_D_F_G_H_J_K_L_M,W_X_C_V_B_N_<' %}
+    {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '36,36,36,36,36', 'mots': mots1}) }}
+    {% set mots1 = 'A_Z_E_R_T_Y_U_I_O_P,Q_S_D_F_G_H_J_K_L_M,>_W_X_C_V_B_N_<' %}
     {{ include('L1m2CoreBundle:Core:keyboard.html.twig', {'mots': mots1}) }}
 
-    <p>Une deuxième grille affiche les lettres placées de l'extrait recherché. Cette grille se remplit aussi à l'aide du clavier situé sous la grille</p>
+    <p>En cliquant sur le bouton extrait, une grille affiche les lettres placées de l'extrait recherché. Cette grille se remplit aussi à l'aide du clavier situé sous la grille</p>
 
     {% set mots1 = ' __ _I_ _ __M, _ _E_ __D_ _ ,_ _ _T_ _ _ _ ' %}
     {{ include('L1m2CoreBundle:Core:grille.html.twig', {'cols': '36,36,36,36,36,36,36,36', 'mots': mots1}) }}
-    {% set mots1 = 'A_Z_E_R_T_Y_U_I_O_P,Q_S_D_F_G_H_J_K_L_M,W_X_C_V_B_N_<' %}
+    {% set mots1 = 'A_Z_E_R_T_Y_U_I_O_P,Q_S_D_F_G_H_J_K_L_M,=_W_X_C_V_B_N_<' %}
     {{ include('L1m2CoreBundle:Core:keyboard.html.twig', {'mots': mots1}) }}
 
+    <p>En cliquant sur le bouton anagrammes, on retourne à la grille d'anagrammes</p>
     <p>Lorsque tous les anagrammes sont déchiffrés, l'extrait est affiché </p>
 
     {% set mots1 = 'J__A_I_M_E__M,I_X_E_R__D_E_S,_L_E_T_T_R_E_S' %}
@@ -58,8 +59,8 @@
 
     <h3>A vous de jouer</h3> 
         <ul>
-            <li>choisir les <a href="{{ path('l1m2_platform_initiales') }}" >lettres initiales</a> des mots</li>
-            <li>choisir les <a href="{{ path('l1m2_platform_anagrammes') }}" >anagrammes</a> </li>  
+            <li>choisir <a href="{{ path('l1m2_platform_initiales') }}" >l'extrait</a></li>
+            <li>choisir <a href="{{ path('l1m2_platform_anagrammes') }}" >les anagrammes</a> </li>  
         </ul>    
 {% endblock %}
 

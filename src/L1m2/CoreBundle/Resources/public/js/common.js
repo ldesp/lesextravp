@@ -204,11 +204,15 @@ function line(letters) {
     return html;
 };
 
-function getKeyboard()
+function getKeyboard(withToggle)
 {
     var html = "<div id=\"right_shift\">" + line("AZERTYUIOP") + "</div>";
     html += ("<div id=\"left_shift\" >" + line("QSDFGHJKLM") + "</div>");
-    html += ("<div>"+ line("WXCVBN<") + "</div>");
+    html += ("<div>");
+    if (withToggle) {
+        html += ("<input type=\"button\" id=\"toggle\" class=\"btn\" value=\"extrait\" onclick=\"changeGrids();\"/>");
+    }
+    html += (line("WXCVBN<")+"</div>");
     return html;
 };
 

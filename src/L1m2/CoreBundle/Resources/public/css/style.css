@@ -30,9 +30,7 @@ body
 #tetepage
 {
     top: 0;
-    padding:10px;
     background-image: url(../images/background.png);
-    height: 56px;
 }
 #overlay
 {
@@ -50,7 +48,7 @@ body
 }
 #contenu
 {
-    margin-top: 80px;
+    margin-top: 60px;
     margin-bottom: 256px;
 }
 #div_grid1, #div_grid2
@@ -72,16 +70,21 @@ body
 {
     background-color: #C0C0C0;
 }
-.td_letter, .td_empty, .td_def, .td_index, .td_sel
+.td_letter, .td_empty, .td_index, .td_sel
 {
     border: solid white;
     height: 48px;
 }
 .td_def
 {
-    width: 120px;
-    text-align: right;
+    text-align: left;
+    color: #ffffff;
+    background-color: #404040;
+    letter-spacing: 2px;
+    padding-top:4px;
+    padding-left:10px;
     font-size: 1em;
+    height: 24px;
 }
 .d_n1
 {
@@ -172,7 +175,7 @@ a:hover, a:active, .apgn:hover, .apgn:active
     color: white;
     background:  #404040;
 }
-.btn1,.btn
+.btn1
 {
     background: #404040;
     -webkit-border-radius: 10px;
@@ -184,7 +187,7 @@ a:hover, a:active, .apgn:hover, .apgn:active
     margin: 5px 10px 5px 10px;
     text-decoration: none;
 }
-.btn2, .eff
+.btn2, .eff, .btn
 {
     background: #404040;
     -webkit-border-radius: 10px;
@@ -204,7 +207,11 @@ a:hover, a:active, .apgn:hover, .apgn:active
 }
 .eff
 {
-    width: 18%;
+    width: 10%;
+}
+.btn
+{
+   width: 26%;
 }
 #left_shift
 {
@@ -214,6 +221,8 @@ a:hover, a:active, .apgn:hover, .apgn:active
 {
     padding-right: 4%;
 }
+
+
 .btn:hover, .btn2:hover, .eff:hover
 {
     background: #808080;
@@ -223,7 +232,7 @@ a:hover, a:active, .apgn:hover, .apgn:active
 nav ul
 {
     background-color: #C0C0C0;
-    padding: 10px;
+    padding: 4px;
     text-align: left;
 }
 nav div
@@ -244,13 +253,9 @@ nav li
 div h3, div ul, div p
 {
     text-align: left;
-    margin-left: 10px;
-    margin-right: 10px;
 }
 div li
 {
-    margin-left: 10px;
-    margin-right: 80px;
     text-align: left;
     margin-bottom: 10px;
 }
@@ -259,9 +264,14 @@ h3
     background-color:  #404040;
     padding-left: 10px;
     padding-right: 10px;
+    font-size: 1em;
     color:white;
 }
-
+p
+{
+    padding-left: 10px;
+    padding-right: 10px;
+}
 .exd_grille
 {
     display: inline-block;
@@ -274,22 +284,27 @@ h3
     height: 36px;
     text-align: center;
 }
+
 .extd_large
 {
-    border: solid white;
-    width: 90px;
-    height: 36px;
-    text-align: center;
+    text-align: left;
+    color: #ffffff;
+    background-color: #404040;
+    letter-spacing: 2px;
+    padding-top:4px;
+    padding-left:10px;  
+    padding-bottom:0px;
+    font-size: 1em;
+    height: 18px;      
 }
-.extd_empty
+.extd_empty,.extd_large
 {
     background-color: #404040;
 }
-.extd_small, .extd_large
+.extd_small
 {
     background-color: #C0C0C0;
 }
-
 .exd_letter
 {
     padding:5px;
@@ -297,9 +312,7 @@ h3
     font-size: 1em;
     border: none;
 }
-
-
-.exd_btn2, .exd_eff
+.exd_btn2, .exd_eff, .exd_toggle
 {
     background: #404040;
     -webkit-border-radius: 10px;
@@ -313,20 +326,27 @@ h3
     text-align: center;
     text-decoration: none;
 }
-
 .exd_btn2
 {
     width: 36px;
 }
 .exd_eff
 {
-    width: 72px;
+    width: 40px;
 }
-@media all and (max-width:512px)
+.exd_toggle
 {
-  .td_letter, .td_empty, .td_def, .td_index, .td_sel
+    width: 108px;
+}
+@media all and (max-width:512px) 
+{
+  .td_letter, .td_empty, .td_index, .td_sel
   {
       height: 36px;
+  }
+  .td_def
+  {
+      height: 18px;
   }
   .d_n1, .d_n2
   {
@@ -336,10 +356,25 @@ h3
   {
       font-size: 1.2em;
   }
-  .btn2, .eff
+  .btn2, .eff, .btn
   {
     height: 42px;
     font-size: 0.8em;
+  }
+  .exd_btn2
+  {
+      width: 24px;
+      font-size: 0.8em;
+  }
+  .exd_eff
+  {
+      width: 28px;
+      font-size: 0.8em;
+  }
+  .exd_toggle
+  {
+      width: 84px;
+      font-size: 0.8em;
   }
 }
 
@@ -351,7 +386,19 @@ h3
   }
   .eff
   {
-    width: 180px;
+    width: 80px;
   }
+  .btn
+  {
+    width: 160px;
+  }
+  
+}
 
+@media all and (max-height:512px) 
+{
+  .btn2, .eff, .btn
+  {
+    height: 36px;
+  }  
 }
