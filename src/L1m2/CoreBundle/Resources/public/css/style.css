@@ -137,44 +137,47 @@ body
     font-size: 1em;
 }
 
-.pgn,.pgn_cur
+.pgn
 {
     display: inline;
     list-style: none;
     margin: none;
 }
-.pgn_cur
-{
-    border: 2px solid black;
-}
 
 a:link, .apgn:link
 {
-    color: blue
+    color: blue;
+    background: #C0C0C0;
 } /* Liens non visités */
 a:visited, .apgn:visited
 {
-    color: purple
+    color: purple;
+    background: #C0C0C0;
 } /* Liens visités */
-.apgn:link, a:hover, a:active, .apgn:hover, .apgn:active
+a:hover, a:active, .apgn:hover, .apgn:active
+{
+    color: white;
+    background:  #404040;
+}
+.apgn:link,.apgn:visited
+{
+    border: 2px solid black;
+}
+a:link, a:visited
+{
+    border: 2px solid white;
+}
+a:link, a:visited, a:hover, a:active, .apgn:link, .apgn:visited, .apgn:hover, .apgn:active
 {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     font-size: 1em;
-    margin: 5px;
-    padding: 5px;
-}
-.apgn:link
-{
-    background: #C0C0C0;
-}
-a:hover, a:active, .apgn:hover, .apgn:active
-{
+    margin: 2px;
+    padding: 4px 8px 2px 8px;
     text-decoration: none;
-    color: white;
-    background:  #404040;
 }
+
 .btn1
 {
     background: #404040;
@@ -231,7 +234,7 @@ a:hover, a:active, .apgn:hover, .apgn:active
 
 nav ul
 {
-    background-color: #C0C0C0;
+  //  background-color: #C0C0C0;
     padding: 4px;
     text-align: left;
 }
@@ -253,11 +256,14 @@ nav li
 div h3, div ul, div p
 {
     text-align: left;
+    padding: 4px 10px 4px 10px;
 }
 div li
-{
-    text-align: left;
-    margin-bottom: 10px;
+{   
+   text-align: left;
+   margin-bottom: 10px;
+   list-style-type: none;
+   line-height: 140%;
 }
 h3
 {
@@ -266,6 +272,11 @@ h3
     padding-right: 10px;
     font-size: 1em;
     color:white;
+    margin:0;
+}
+.ul_tri
+{
+    margin:0;
 }
 p
 {

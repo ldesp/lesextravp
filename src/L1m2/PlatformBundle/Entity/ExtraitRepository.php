@@ -13,17 +13,33 @@ use Doctrine\ORM\QueryBuilder;
  */
 class ExtraitRepository extends PropoRepository
 {
-    protected function getStatusQuery($status)
-    {
+    protected function getStatusQuery($status, $order)
+    {      
         $qb = $this->createQueryBuilder('e');
+        
         if ($status != Proposition::STATUS_TOUT) 
         {
             $qb->where('e.status = :status')            
                ->setParameter('status', $status);
         }
-        $query = $qb->orderBy('e.datePropo', 'DESC')
-                    ->getQuery()
-        ;
-        return $query;
+        
+        if ($order == Proposition::DATE_DESC) 
+        {
+            $qb->orderBy('e.datePropo', 'DESC');
+        }
+        elseif ($order == Proposition::DATE_ASC) 
+        {
+            $qb->orderBy('e.datePropo', 'ASC');
+        }
+        elseif ($order == Proposition::LEN_DESC) 
+        {
+            $qb->addOrderBy($qb->expr()->length('e.entrees'), 'DESC');
+        }
+        else
+        {
+            $qb->addOrderBy($qb->expr()->length('e.entrees'), 'ASC');
+        }
+            
+        return $qb->getQuery();
     }
 }

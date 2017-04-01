@@ -11,19 +11,33 @@ use Doctrine\ORM\QueryBuilder;
  */
 class TransfoRepository extends PropoRepository
 {
-    protected function getStatusQuery($status)
-    {
+    protected function getStatusQuery($status, $order)
+    {      
         $qb = $this->createQueryBuilder('t');
+                        
         if ($status != Proposition::STATUS_TOUT) 
         {
             $qb->where('t.status = :status')            
                ->setParameter('status', $status);
         }
-        $query = $qb->orderBy('t.datePropo', 'DESC')
-                    ->getQuery()
-        ;
-        return $query;
+        
+        if ($order == Proposition::DATE_DESC) 
+        {
+            $qb->orderBy('t.datePropo', 'DESC');
+        }
+        elseif ($order == Proposition::DATE_ASC) 
+        {
+            $qb->orderBy('t.datePropo', 'ASC');
+        }
+        elseif ($order == Proposition::LEN_DESC) 
+        {
+            $qb->addOrderBy($qb->expr()->length('t.mots'), 'DESC');
+        }
+        else
+        {
+            $qb->addOrderBy($qb->expr()->length('t.mots'), 'ASC');
+        }    
+                
+        return $qb->getQuery();
     }
-
-
 }

@@ -37,16 +37,19 @@ abstract class Proposition
     const STATUS_RECU = 1;    // valeur initiale du status, filtre les propositions recues 
     const STATUS_REJETE = 2;  // filtre les propositions rejetees
     const STATUS_ACCEPTE = 4; // filtre les propositions acceptees 
-    const STATUS_TOUT = 7;     // pas de filtre sur les propositions 
-
-
+    const STATUS_TOUT = 7;    // pas de filtre sur les propositions 
+    const DATE_DESC = 1;      // ordre du plus recent au plus ancien
+    const DATE_ASC = 2;       // ordre du plus ancien au plus recent
+    const LEN_DESC = 3;       // ordre du plus long au plus court 
+    const LEN_ASC = 4;        // ordre du plus court au plus long
+    
     public function __construct()
     {
         $this->setDatePropo(new \Datetime());
         $this->setDateParu($this->datePropo);
         $this->setStatus(self::STATUS_RECU);
     }
- 
+    
     /**
      * @return integer
      */
@@ -126,5 +129,4 @@ abstract class Proposition
     {
         return ($this->status == self::STATUS_REJETE);
     }
-
 }

@@ -12,11 +12,33 @@ use Symfony\Component\HttpFoundation\Response;
 class ExtraitController extends Controller
 {
 
-    public function listerinitialesAction($page)
+    public function listerinitialesAction($page, $order)
     {
         if ($page < 1) 
         {
             throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+        }
+        
+        $page_in = $page;
+        
+        if ($order < 1 || $order > 4) 
+        {
+            throw $this->createNotFoundException("Le tri ".$order." n'existe pas.");
+        }
+        
+        // verifier si le tri change et le mettre à jour
+        $session = $this->getRequest()->getSession();
+        
+        if($session->has('orderinitiales'))
+        {
+             if ($order != $session->get('orderinitiales'))
+             {
+                 $session->set('orderinitiales', $order);
+                 $page_in = 1;
+             }                       
+        } else {
+            $session->set('orderinitiales', $order);
+            $page_in = 1;
         }
 
         // il faudrait utiliser un paramètre, et y accéder via $this->container->getParameter('nb_per_page')
@@ -27,22 +49,23 @@ class ExtraitController extends Controller
         $listExtraits = $this->getDoctrine()
             ->getManager()
             ->getRepository('L1m2PlatformBundle:Extrait')
-            ->getPagedAcceptees($page, $nbPerPage)
+            ->getPagedAcceptees($page_in, $nbPerPage, $order)
         ;
 
         // On calcule le nombre total de pages grâce au count($listExtraits) qui retourne le nombre total d'extraits
         $nbPages = ceil(count($listExtraits)/$nbPerPage);
 
         // Si la page n'existe pas, on retourne une 404
-        if ($page > $nbPages) 
+        if ($page_in > $nbPages) 
         {
-            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+            throw $this->createNotFoundException("La page ".$page_in." n'existe pas.");
         }
         // On donne toutes les informations nécessaires à la vue
         return $this->render('L1m2PlatformBundle:Extrait:listerinitiales.html.twig', array(
             'listExtraits' => $listExtraits,
             'nbPages'     => $nbPages,
-            'page'        => $page
+            'page'        => $page_in,
+            'order'       => $order
         ));
     }
 
@@ -81,7 +104,7 @@ class ExtraitController extends Controller
         {
             throw $this->createNotFoundException("La page ".$page." n'existe pas.");
         }
-
+        
         // il faudrait utiliser un paramètre, et y accéder via $this->container->getParameter('nb_per_page')
         $nbPerPage = 7;
 

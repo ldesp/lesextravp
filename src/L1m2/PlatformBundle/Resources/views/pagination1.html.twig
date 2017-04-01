@@ -1,0 +1,14 @@
+{# le programme incluant a défini les paramètres page, nbPages, pathlist #} 
+<ul>
+    {% for p in range(1, nbPages) %}
+        <li class="pgn" >
+        {% if p == page %} 
+            <a class="apgn" href="{{ path(pl, {'page': p, 'order': order}) }}">{{ p }}</a>
+        {% else %} 
+            <a  href="{{ path(pl , {'page': p, 'order': order}) }}">{{ p }}</a>
+        {% endif %}
+        </li> 
+    {% endfor %}               
+</ul>
+
+

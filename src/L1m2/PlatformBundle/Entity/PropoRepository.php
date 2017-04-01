@@ -9,31 +9,31 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 
 abstract class PropoRepository extends \Doctrine\ORM\EntityRepository
 {
-    abstract protected function getStatusQuery($status);
+    abstract protected function getStatusQuery($status, $order);
 
-    public function getToutes()
+    public function getToutes($order = Proposition::DATE_DESC)
     {
-        return $this->getStatusQuery(Proposition::STATUS_TOUT)->getResult();
+        return $this->getStatusQuery(Proposition::STATUS_TOUT, $order)->getResult();
     }
 
-    public function getRecues()
+    public function getRecues($order = Proposition::DATE_DESC)
     {
-        return $this->getStatusQuery(Proposition::STATUS_RECU)->getResult();
+        return $this->getStatusQuery(Proposition::STATUS_RECU, $order)->getResult();
     }
 
-    public function getRejetees()
+    public function getRejetees($order = Proposition::DATE_DESC)
     {
-        return $this->getStatusQuery(Proposition::STATUS_REJETE)->getResult();
+        return $this->getStatusQuery(Proposition::STATUS_REJETE, $order)->getResult();
     }
 
-    public function getAcceptees()
+    public function getAcceptees($order = Proposition::DATE_DESC)
     {
-        return $this->getStatusQuery(Proposition::STATUS_ACCEPTE)->getResult();
+        return $this->getStatusQuery(Proposition::STATUS_ACCEPTE, $order)->getResult();
     }
 
-    protected function pagedQuery($page, $nbPerPage, $status)
+    protected function pagedQuery($page, $nbPerPage, $status, $order)
     {
-        $query = $this->getStatusQuery($status);
+        $query = $this->getStatusQuery($status, $order);
         $query
             // On définit la valeur à partir de laquelle commencer la liste
             ->setFirstResult(($page-1) * $nbPerPage)
@@ -43,27 +43,27 @@ abstract class PropoRepository extends \Doctrine\ORM\EntityRepository
         return  $query;
     }
 
-    public function getPagedToutes($page, $nbPerPage)
+    public function getPagedToutes($page, $nbPerPage, $order = Proposition::DATE_DESC)
     {
-        $query = $this->pagedQuery($page, $nbPerPage, Proposition::STATUS_TOUT);
+        $query = $this->pagedQuery($page, $nbPerPage, Proposition::STATUS_TOUT, $order );
         return  new Paginator($query, true);
     }
 
-    public function getPagedRecues($page, $nbPerPage)
+    public function getPagedRecues($page, $nbPerPage, $order = Proposition::DATE_DESC)
     {
-        $query = $this->pagedQuery($page, $nbPerPage, Proposition::STATUS_RECU);
+        $query = $this->pagedQuery($page, $nbPerPage, Proposition::STATUS_RECU, $order);
         return  new Paginator($query, true);
     }
 
-    public function getPagedRejetees($page, $nbPerPage)
+    public function getPagedRejetees($page, $nbPerPage, $order = Proposition::DATE_DESC)
     {
-        $query = $this->pagedQuery($page, $nbPerPage, Proposition::STATUS_REJETE);
+        $query = $this->pagedQuery($page, $nbPerPage, Proposition::STATUS_REJETE, $order);
         return  new Paginator($query, true);
     }
 
-    public function getPagedAcceptees($page, $nbPerPage)
+    public function getPagedAcceptees($page, $nbPerPage, $order = Proposition::DATE_DESC)
     {
-        $query = $this->pagedQuery($page, $nbPerPage, Proposition::STATUS_ACCEPTE);
+        $query = $this->pagedQuery($page, $nbPerPage, Proposition::STATUS_ACCEPTE, $order);
         return  new Paginator($query, true);
     }
  

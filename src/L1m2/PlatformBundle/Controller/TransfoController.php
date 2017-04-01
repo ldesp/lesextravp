@@ -63,37 +63,56 @@ class TransfoController extends Controller
         ));
     }
 
-    public function listeranagrammesAction($page)
+    public function listeranagrammesAction(Request $request, $page, $order)
     {
         if ($page < 1) 
         {
             throw $this->createNotFoundException("La page ".$page." n'existe pas.");
         }
-
+        $page_in = $page;
+        
+        if ($order < 1 || $order > 4) 
+        {
+            throw $this->createNotFoundException("Le tri ".$order." n'existe pas.");
+        }
+        // verifier si le tri change et le mettre à jour
+        $session = $this->getRequest()->getSession();
+        if($session->has('orderanagrammes'))
+        {
+             if ($order != $session->get('orderanagrammes'))
+             {
+                 $session->set('orderanagrammes', $order);
+                 $page_in = 1;
+             }                       
+        } else {
+            $session->set('orderanagrammes', $order);
+            $page_in = 1;
+        }
+  
         // il faudrait utiliser un paramètre, et y accéder via $this->container->getParameter('nb_per_page')
         $nbPerPage = 7;
-
 
         // On récupère notre objet Paginator
         $listTransfos = $this->getDoctrine()
             ->getManager()
             ->getRepository('L1m2PlatformBundle:Transfo')
-            ->getPagedAcceptees($page, $nbPerPage)
+            ->getPagedAcceptees($page_in, $nbPerPage,$order)
         ;
 
         // On calcule le nombre total de pages grâce au count($listTransfos) qui retourne le nombre total de transfos
         $nbPages = ceil(count($listTransfos)/$nbPerPage);
 
         // Si la page n'existe pas, on retourne une 404
-        if ($page > $nbPages) 
+        if ($page_in > $nbPages) 
         {
-            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+            throw $this->createNotFoundException("La page ".$page_in." n'existe pas.");
         }
         // On donne toutes les informations nécessaires à la vue
         return $this->render('L1m2PlatformBundle:Transfo:listeranagrammes.html.twig', array(
             'listTransfos' => $listTransfos,
-            'nbPages'     => $nbPages,
-            'page'        => $page
+            'nbPages'      => $nbPages,
+            'page'         => $page_in,
+            'order'        => $order
         ));
     }
 

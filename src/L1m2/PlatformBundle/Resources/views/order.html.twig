@@ -1,0 +1,22 @@
+<ul class="ul_tri">
+   {% if order == 1 %} 
+       <a class="apgn" href="{{ path(pl, {'page': page, 'order': 1}) }}">récent</a>
+   {% else %}
+       <a  href="{{ path(pl, {'page': page, 'order': 1}) }}">récent</a>  
+   {% endif %} 
+   {% if order == 2 %} 
+       <a class="apgn" href="{{ path(pl, {'page': page, 'order': 2}) }}">ancien</a>
+   {% else %}
+       <a  href="{{ path(pl, {'page': page, 'order': 2}) }}">ancien</a>  
+   {% endif %}  
+   {% if order == 3 %} 
+       <a class="apgn" href="{{ path(pl, {'page': page, 'order': 3}) }}">difficile</a>
+   {% else %}
+       <a  href="{{ path(pl, {'page': page, 'order': 3}) }}">difficile</a>  
+   {% endif %}    
+   {% if order == 4 %} 
+       <a class="apgn" href="{{ path(pl, {'page': page, 'order': 4}) }}">facile</a>
+   {% else %}
+       <a  href="{{ path(pl, {'page': page, 'order': 4}) }}">facile</a>  
+   {% endif %}    
+</ul>

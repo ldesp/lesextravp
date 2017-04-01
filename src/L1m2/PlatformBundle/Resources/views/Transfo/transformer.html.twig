@@ -7,7 +7,10 @@
 
 {% block body %}
     {% block tetepage %}    
-        {{ parent() }}
+        {% set order = app.session.get('orderinitiales') %}  
+        <li><a href="{{ path('l1m2_core_home') }}" >accueil</a></li>
+        <li><a href="{{ path('l1m2_platform_initiales', {'page': 1, 'order': order}) }}" >liste</a></li>
+        <li><a href="{{ path('l1m2_core_contact') }}" >contact</a></li>        
     {% endblock %}
     {% block overlay %}
         <div class="btn1"  id="message"></div>

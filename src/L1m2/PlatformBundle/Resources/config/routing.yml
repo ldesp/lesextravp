@@ -23,10 +23,11 @@ l1m2_platform_valid:
 
 
 l1m2_platform_initiales:
-    path:      /initiales/{page}
-    defaults:  { _controller: L1m2PlatformBundle:Extrait:listerinitiales, page: 1 }
+    path:      /initiales/{page}/{order}
+    defaults:  { _controller: L1m2PlatformBundle:Extrait:listerinitiales, page: 1, order : 1}
     requirements:
         page: \d*
+        order: \d*
 
 l1m2_platform_trans:
     path:      /transformer/{extrait_id}
@@ -35,10 +36,11 @@ l1m2_platform_trans:
         extrait_id: \d+
 
 l1m2_platform_anagrammes:
-    path:      /anagrammes/{page}
-    defaults:  { _controller: L1m2PlatformBundle:Transfo:listeranagrammes, page: 1 }
+    path:      /anagrammes/{page}/{order}
+    defaults:  { _controller: L1m2PlatformBundle:Transfo:listeranagrammes, page: 1, order : 1}
     requirements:
         page: \d*
+        order: \d*
 
 l1m2_platform_retro:
     path:      /retrouver/{transfo_id}
